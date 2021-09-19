@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public Renderer rend;
+    // Remember OnMouseDrag
+    bool isPressed = false;
 
-    void Start()
+    private void OnMouseDown()
     {
-        rend = GetComponent<Renderer>();
+        isPressed = true;
     }
 
-    void OnMouseDrag()
+    private void OnMouseUp()
     {
-        rend.material.color -= Color.white * Time.deltaTime;
+        isPressed = false;
     }
 }
