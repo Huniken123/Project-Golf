@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1991997589}
   rotationSpeed: 5
-  shootPower: 30
+  shootPower: 10
   line: {fileID: 1077530760}
 --- !u!4 &140390872
 Transform:
