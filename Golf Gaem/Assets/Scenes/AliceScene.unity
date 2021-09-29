@@ -2761,6 +2761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windAxis: y
   fanSpeed: 2
+  fanCap: 300
 --- !u!1 &1877930988
 GameObject:
   m_ObjectHideFlags: 0

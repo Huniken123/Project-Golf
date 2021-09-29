@@ -5,8 +5,7 @@ using UnityEngine;
 public class FanScript : MonoBehaviour
 {
     public string windAxis = "y";
-    public float fanSpeed = 5;
-    public float fanCap = 100;
+    public float fanCap;
     bool validDir = false;
     
     Transform origin;
@@ -52,14 +51,14 @@ public class FanScript : MonoBehaviour
             {
                 case "x":
                     dist = Mathf.Abs(distVect.x);
-                    fanForce = fanSpeed / (dist * dist);
+                    fanForce = 4 / (dist * dist);
                     if (fanForce > fanCap) fanForce = fanCap;
                     objBody.AddForce(transform.right * fanForce);
                     Debug.Log("x force " + fanForce);
                     break;
                 case "y":
                     dist = Mathf.Abs(distVect.y);
-                    fanForce = fanSpeed / (dist * dist);
+                    fanForce = 4 / (dist * dist);
                     if(fanForce > fanCap)
                     { fanForce = fanCap; }
                     objBody.AddForce(transform.up * fanForce);
@@ -67,7 +66,7 @@ public class FanScript : MonoBehaviour
                     break;
                 case "z":
                     dist = Mathf.Abs(distVect.z);
-                    fanForce = fanSpeed / (dist * dist);
+                    fanForce = 4 / (dist * dist);
                     if (fanForce > fanCap) fanForce = fanCap;
                     objBody.AddForce(transform.forward * fanForce);
                     Debug.Log("z force " + fanForce);
