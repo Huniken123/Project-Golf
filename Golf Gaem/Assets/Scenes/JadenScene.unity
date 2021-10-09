@@ -152,11 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34016ed100018e4cbacca5f8df7993d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 1991997589}
   rotationSpeed: 5
-  shootPower: 10
-  lineLength: 4
+  ball: {fileID: 1991997589}
+  shotdivider: 7
+  killboxY: -10
   line: {fileID: 1077530760}
+  lineLength: 4
 --- !u!4 &140390872
 Transform:
   m_ObjectHideFlags: 0
@@ -731,7 +732,7 @@ Transform:
   m_GameObject: {fileID: 642582515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 620439974}
   m_RootOrder: 0
