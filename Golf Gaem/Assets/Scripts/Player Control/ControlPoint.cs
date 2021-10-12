@@ -104,12 +104,12 @@ public class ControlPoint : MonoBehaviour
             dragReleasePos = Input.mousePosition.y;
             shootPower = (dragStartPos - dragReleasePos) / shotdivider;
 
-            if (shootPower >= 1) ball.velocity = transform.forward * shootPower;
+            if (shootPower >= 1) ball.AddForce(transform.forward * (shootPower * 50));
             isShot = false;
 
             Debug.Log("Ball released: " + Input.mousePosition);
 
-            if (shootPower >= 1) Debug.Log(shootPower);
+            if (shootPower >= 1) Debug.Log("Shot power: " + shootPower);
             else Debug.Log("Shot wasn't strong enough");
 
             //  Tobey - Prevents numbers from being stored after the equation
