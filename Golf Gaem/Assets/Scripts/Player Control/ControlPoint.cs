@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class ControlPoint : MonoBehaviour
 {
+    
+    // camera
     float xRot, yRot = 0f;
     public float rotationSpeed = 2f;
 
+    // ball & shooting
     public Rigidbody ball;
+    float shootPower;
+    float shotdivider = 7;                 // Tobey - This is the float that is used to divide the shootPower equation
+    Vector3 ballLastShot;                  // stores respawn point
+    [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
+    float dragStartPos, dragReleasePos;    // Tobey - The Y position of where the player presses then releases on the screen
+    bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
 
-    float shootPower;   //  Tobey - This now holds the equation for (dragStartPos - dragReleasePos / shotDivider)
-    [SerializeField] float shotdivider = 7; //  Tobey - This is the float that is used to divide the shootPower equation
-    Vector3 ballLastShot;
-    [SerializeField] float killboxY = -10; //change this depending on level
-
+    // ball trajectory ui
     public LineRenderer line;
-    public float lineLength = 4f;
-
-    float dragStartPos;     // Tobey - The Y position of where the player pressed the screen
-    float dragReleasePos;   // Tobey - The Y position of where the player released the screen
-
-    bool isShooting;        // Tobey -  Checks if the player is shooting
-    bool isShot;            // Tobey - Checks if the ball has been shot
+    public float lineLength = 4f;          // make this scale based on shot power
 
     private void Start()
     {
-        //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;     // Tobey - Confines the cursor into the window
-        isShooting = false;     //  Tobey - Checks if the mouse button is being held down
-        isShot = false;         //  Tobey - Checks if the the mouse button has been released
+        isShooting = false; isShot = false;
     }
 
     private void Update()
@@ -62,6 +59,7 @@ public class ControlPoint : MonoBehaviour
             ball.velocity = new Vector3(0,0,0);
         }
 
+        #region Tobey's ball trajectory code that doesn't work (might get rid of this)
         //  Tobey - This is code related to the Line Trajectory UI. I'd recommend commenting it out as it doesn't fully work at the moment.
         /*#region Line Trajectory Code
         Vector3 forceV = ball.velocity * shootPower;
@@ -69,8 +67,8 @@ public class ControlPoint : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             LineTrajectory.Instance.UpdateTrajectory(forceVector: forceV, ball, startingPoint: transform.position);
-        }
-        #endregion*/
+        }*/
+        #endregion
     }
 
     private void FixedUpdate()
@@ -104,21 +102,16 @@ public class ControlPoint : MonoBehaviour
             dragReleasePos = Input.mousePosition.y;
             shootPower = (dragStartPos - dragReleasePos) / shotdivider;
 
-            if (shootPower >= 1) ball.velocity = transform.forward * shootPower;
+            if (shootPower >= 1) ball.AddForce(transform.forward * (shootPower * 50));
             isShot = false;
 
             Debug.Log("Ball released: " + Input.mousePosition);
 
-            if (shootPower >= 1) Debug.Log(shootPower);
+            if (shootPower >= 1) Debug.Log("Shot power: " + shootPower);
             else Debug.Log("Shot wasn't strong enough");
 
             //  Tobey - Prevents numbers from being stored after the equation
             dragStartPos = 0; dragReleasePos = 0;
         }
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("OutOfBounds")) ball.transform.position = ballLastShot;
     }
 }
