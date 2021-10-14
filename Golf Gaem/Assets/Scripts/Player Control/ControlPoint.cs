@@ -12,9 +12,9 @@ public class ControlPoint : MonoBehaviour
     // ball & shooting
     public Rigidbody ball;
     float shootPower;
-    float shotdivider = 7;                 // Tobey - This is the float that is used to divide the shootPower equation
     Vector3 ballLastShot;                  // stores respawn point
     [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
+    Vector3 dragStartVal, dragReleaseVal;
     float dragStartPos, dragReleasePos;    // Tobey - The Y position of where the player presses then releases on the screen
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
 
@@ -24,7 +24,8 @@ public class ControlPoint : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;     // Tobey - Confines the cursor into the window
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;     // Tobey - Confines the cursor into the window
         isShooting = false; isShot = false;
     }
 
@@ -82,10 +83,13 @@ public class ControlPoint : MonoBehaviour
 
     void DragStart()    //  Tobey - Sets up the properties for dragging the ball
     {
-        dragStartPos = Input.mousePosition.y;
+        Cursor.lockState = CursorLockMode.Confined;
+        dragStartVal = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
+        dragStartPos = dragStartVal.y;
         ballLastShot = ball.transform.position;
         Debug.Log("Ball spawn stored. Location: " + ballLastShot);
         isShooting = true;
+        Debug.Log("Drag start position: " + dragStartVal);
     }
 
     void DragRelease()  //  Tobey - Sets up the properties for releasing the ball
@@ -99,19 +103,24 @@ public class ControlPoint : MonoBehaviour
 
         if(isShooting == false)
         {
-            dragReleasePos = Input.mousePosition.y;
-            shootPower = (dragStartPos - dragReleasePos) / shotdivider;
+            dragReleaseVal = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
+            dragReleasePos = dragReleaseVal.y;
+            shootPower = (dragStartPos - dragReleasePos);
 
-            if (shootPower >= 1) ball.AddForce(transform.forward * (shootPower * 50));
+            if (shootPower >= 1) ball.AddForce(transform.forward * (shootPower * 200));
             isShot = false;
 
+            Cursor.lockState = CursorLockMode.Locked;
+
             Debug.Log("Ball released: " + Input.mousePosition);
+
+            Debug.Log("Drag release position: " + dragReleaseVal);
 
             if (shootPower >= 1) Debug.Log("Shot power: " + shootPower);
             else Debug.Log("Shot wasn't strong enough");
 
             //  Tobey - Prevents numbers from being stored after the equation
-            dragStartPos = 0; dragReleasePos = 0;
+            dragStartPos = 0; dragReleasePos = 0; dragReleaseVal = new Vector3(0, 0, 0); dragStartVal = new Vector3(0, 0, 0);
         }
     }
 }
