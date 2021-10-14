@@ -102,12 +102,7 @@ public class ControlPoint : MonoBehaviour
             dragReleasePos = Input.mousePosition.y;
             shootPower = (dragStartPos - dragReleasePos) / shotdivider;
 
-            if (shootPower >= 1)
-            {
-                if(ball.isKinematic==true) ball.isKinematic = false;
-                ball.AddForce(transform.forward * (shootPower * 50));
-            }
-
+            if (shootPower >= 1) ball.AddForce(transform.forward * (shootPower * 50));
             isShot = false;
 
             Debug.Log("Ball released: " + Input.mousePosition);
