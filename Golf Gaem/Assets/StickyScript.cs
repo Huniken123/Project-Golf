@@ -6,22 +6,28 @@ public class StickyScript : MonoBehaviour
 {
     Rigidbody objbody;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public float offSec;
+    bool active = true;
+    
     void OnTriggerEnter(Collider obj)
     {
         Debug.Log("Stuck!");
-        objbody = obj.GetComponent<Rigidbody>();
-        objbody.isKinematic = true;
+        if (active)
+        {
+            objbody = obj.GetComponent<Rigidbody>();
+            objbody.isKinematic = true;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit()
     {
-        objbody.isKinematic = false;
+        StartCoroutine(StickDelay());
+    }
+
+    private IEnumerator StickDelay()
+    {
+        active = false;
+        yield return new WaitForSeconds(offSec);
+        active = true;
     }
 }

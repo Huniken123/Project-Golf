@@ -46,12 +46,12 @@ public class ControlPoint : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isShooting) DragStart();
         if (Input.GetMouseButtonDown(0))
         {
-            line.SetPosition(0, transform.position);
-            line.SetPosition(1, transform.position + transform.forward * lineLength);
+            //line.SetPosition(0, transform.position);
+            //line.SetPosition(1, transform.position + transform.forward * lineLength);
         }
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
-        if (Input.GetMouseButtonUp(0)) isShot = true; line.gameObject.SetActive(false);
+        if (Input.GetMouseButtonUp(0)) isShot = true; //line.gameObject.SetActive(false);
 
         if (ball.position.y <= killboxY)
         {
@@ -77,7 +77,7 @@ public class ControlPoint : MonoBehaviour
         if (!Input.GetMouseButtonDown(0) && isShooting)
         {
             DragRelease();
-            line.gameObject.SetActive(true);
+            //line.gameObject.SetActive(true);
         }
     }
 
@@ -107,7 +107,11 @@ public class ControlPoint : MonoBehaviour
             dragReleasePos = dragReleaseVal.y;
             shootPower = (dragStartPos - dragReleasePos);
 
-            if (shootPower >= 1) ball.AddForce(transform.forward * (shootPower * 200));
+            if (shootPower >= 1)
+            {
+                ball.isKinematic = false;
+                ball.AddForce(transform.forward * (shootPower * 200));
+            }
             isShot = false;
 
             Cursor.lockState = CursorLockMode.Locked;

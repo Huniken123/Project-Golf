@@ -6,6 +6,7 @@ public class FanScript : MonoBehaviour
 {
     public string windAxis = "y";
     public float fanCap;
+    public float speed;
     bool validDir = false;
     
     Transform origin;
@@ -17,9 +18,7 @@ public class FanScript : MonoBehaviour
 
         switch (windAxis)
         {
-            case "x":
-            case "y":
-            case "z":
+            case "x": case "y": case "z":
                 validDir = true;
                 break;
             default:
@@ -42,6 +41,8 @@ public class FanScript : MonoBehaviour
     {
         Vector3 distVect = (obj.transform.position - gameObject.transform.position);
         Rigidbody objBody = obj.GetComponent<Rigidbody>();
+        Vector3 dirVect = Vector3.zero;
+        string forceName =  "unknown";
         float fanForce;
         float dist = 0;
 
@@ -50,32 +51,30 @@ public class FanScript : MonoBehaviour
             switch (windAxis)
             {
                 case "x":
-                    dist = Mathf.Abs(distVect.x);
-                    fanForce = 4 / (dist * dist);
-                    if (fanForce > fanCap) fanForce = fanCap;
-                    objBody.AddForce(transform.right * fanForce);
-                    Debug.Log("x force " + fanForce);
+                    dist = distVect.x;
+                    dirVect = transform.right;
+                    forceName = "x force";
                     break;
                 case "y":
-                    dist = Mathf.Abs(distVect.y);
-                    fanForce = 4 / (dist * dist);
-                    if(fanForce > fanCap)
-                    { fanForce = fanCap; }
-                    objBody.AddForce(transform.up * fanForce);
-                    Debug.Log("y force " + fanForce);
+                    dist = distVect.y;
+                    dirVect = transform.up;
+                    forceName = "y force";
                     break;
                 case "z":
-                    dist = Mathf.Abs(distVect.z);
-                    fanForce = 4 / (dist * dist);
-                    if (fanForce > fanCap) fanForce = fanCap;
-                    objBody.AddForce(transform.forward * fanForce);
-                    Debug.Log("z force " + fanForce);
+                    dist = distVect.z;
+                    dirVect = transform.forward;
+                    forceName = "z force";
                     break;
                 default:
                     validDir = false;
                     break;
-
             }
+
+            dist = Mathf.Abs(dist);
+            fanForce = speed / (dist * dist);
+            if (fanForce > fanCap) fanForce = fanCap;
+            objBody.AddForce(dirVect * fanForce);
+            Debug.Log(forceName + " " + fanForce);
         }
     }
 }
