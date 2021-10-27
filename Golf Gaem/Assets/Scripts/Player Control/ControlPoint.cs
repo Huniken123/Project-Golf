@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ControlPoint : MonoBehaviour
 {
-    
     // camera
     float xRot, yRot = 0f;
     public float rotationSpeed = 2f;
@@ -18,6 +17,8 @@ public class ControlPoint : MonoBehaviour
     float dragStartPos, dragReleasePos;    // Tobey - The Y position of where the player presses then releases on the screen
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
 
+    // TODO: Make right click pretend the y value is way lower than it actually is so that you can do a proper arc shot
+
     // ball trajectory ui
     public LineRenderer line;
     public float lineLength = 4f;          // make this scale based on shot power
@@ -27,6 +28,8 @@ public class ControlPoint : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;     // Tobey - Confines the cursor into the window
         isShooting = false; isShot = false;
+        line = GetComponent<LineRenderer>();
+        line.enabled = false;
     }
 
     private void Update()
@@ -36,22 +39,22 @@ public class ControlPoint : MonoBehaviour
         xRot += Input.GetAxis("Mouse X") * rotationSpeed;
         if (!isShooting) yRot += Input.GetAxis("Mouse Y") * rotationSpeed;
         // lock camera y axis while shooting
-        if (yRot < -35f) yRot = -35f;
-        if (yRot > 35f) yRot = 35f;
+        if (yRot < -30f) yRot = -30f;
+        if (yRot > 30f) yRot = 30f;
         transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
         #endregion
 
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
 
         if (Input.GetMouseButtonDown(0) && !isShooting) DragStart();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            //line.SetPosition(0, transform.position);
-            //line.SetPosition(1, transform.position + transform.forward * lineLength);
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, transform.position + transform.forward * lineLength);
         }
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
-        if (Input.GetMouseButtonUp(0)) isShot = true; //line.gameObject.SetActive(false);
+        if (Input.GetMouseButtonUp(0)) isShot = true;
 
         if (ball.position.y <= killboxY)
         {
@@ -77,7 +80,6 @@ public class ControlPoint : MonoBehaviour
         if (!Input.GetMouseButtonDown(0) && isShooting)
         {
             DragRelease();
-            //line.gameObject.SetActive(true);
         }
     }
 
@@ -90,6 +92,7 @@ public class ControlPoint : MonoBehaviour
         Debug.Log("Ball spawn stored. Location: " + ballLastShot);
         isShooting = true;
         Debug.Log("Drag start position: " + dragStartVal);
+        line.enabled = true;
     }
 
     void DragRelease()  //  Tobey - Sets up the properties for releasing the ball
@@ -110,8 +113,9 @@ public class ControlPoint : MonoBehaviour
             if (shootPower >= 1)
             {
                 ball.isKinematic = false;
-                ball.AddForce(transform.forward * (shootPower * 200));
+                ball.AddForce(transform.forward * (shootPower * 300));
             }
+            line.enabled = false;
             isShot = false;
 
             Cursor.lockState = CursorLockMode.Locked;
