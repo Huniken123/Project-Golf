@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - OutOfBounds
+  - Floor
   layers:
   - Default
   - TransparentFX
