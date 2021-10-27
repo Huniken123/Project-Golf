@@ -54,7 +54,7 @@ public class ControlPoint : MonoBehaviour
 
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
 
-        if (Input.GetMouseButtonDown(0) && !isShooting && isGrounded) DragStart();
+        if (Input.GetMouseButtonDown(0) && !isShooting) DragStart(); // add isGrounded check
         if (Input.GetMouseButton(0))
         {
             line.SetPosition(0, transform.position);
@@ -145,7 +145,7 @@ public class ControlPoint : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            isGrounded = true;
+            //isGrounded = true;
         }
     }
 }
