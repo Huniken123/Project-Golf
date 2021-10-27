@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ControlPoint : MonoBehaviour
 {
-    // camera
+    public static ControlPoint cPoint;
+
+    [Header("Camera:")]
     float xRot, yRot = 0f;
     public float rotationSpeed = 2f;
 
-    // ball & shooting
+    [Header("Ball and Shooting:")]
     public Rigidbody ball;
     float shootPower;
     Vector3 ballLastShot;                  // stores respawn point
@@ -16,12 +18,18 @@ public class ControlPoint : MonoBehaviour
     Vector3 dragStartVal, dragReleaseVal;
     float dragStartPos, dragReleasePos;    // Tobey - The Y position of where the player presses then releases on the screen
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
+    public static bool isGrounded = false;
 
     // TODO: Make right click pretend the y value is way lower than it actually is so that you can do a proper arc shot
 
-    // ball trajectory ui
-    public LineRenderer line;
+    [Header("Ball trajectory UI:")]
+    internal LineRenderer line;
     public float lineLength = 4f;          // make this scale based on shot power
+
+    private void Awake()
+    {
+        cPoint = this;
+    }
 
     private void Start()
     {
@@ -46,7 +54,7 @@ public class ControlPoint : MonoBehaviour
 
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
 
-        if (Input.GetMouseButtonDown(0) && !isShooting) DragStart();
+        if (Input.GetMouseButtonDown(0) && !isShooting && isGrounded) DragStart();
         if (Input.GetMouseButton(0))
         {
             line.SetPosition(0, transform.position);
@@ -116,6 +124,7 @@ public class ControlPoint : MonoBehaviour
                 ball.AddForce(transform.forward * (shootPower * 300));
             }
             line.enabled = false;
+            isGrounded = false;
             isShot = false;
 
             Cursor.lockState = CursorLockMode.Locked;
@@ -129,6 +138,14 @@ public class ControlPoint : MonoBehaviour
 
             //  Tobey - Prevents numbers from being stored after the equation
             dragStartPos = 0; dragReleasePos = 0; dragReleaseVal = new Vector3(0, 0, 0); dragStartVal = new Vector3(0, 0, 0);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            isGrounded = true;
         }
     }
 }
