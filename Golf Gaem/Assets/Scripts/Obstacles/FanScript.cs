@@ -7,14 +7,27 @@ public class FanScript : MonoBehaviour
     public string windAxis = "y";
     public float fanCap;
     public float speed;
-    bool validDir = false;
     
-    Transform origin;
+    internal bool validDir = false;
+    internal bool fanOn = false;
 
+    [Header("Fan Timing")]
+    public bool alwaysOn;
+    public float timeOff;
+    public float timeOn;
+
+    internal ParticleSystem ParSys;
+    internal Transform Origin;
+    
     void Start()
     {
-        origin = gameObject.transform.Find("FanOrigin");
-        Debug.Log(origin.name);
+        Origin = gameObject.transform.Find("FanOrigin");
+        ParSys = Origin.gameObject.GetComponent<ParticleSystem>();
+
+        if (alwaysOn)
+            FanActiveCode();
+        else
+            StartCoroutine(fanTiming());
 
         switch (windAxis)
         {
@@ -28,6 +41,7 @@ public class FanScript : MonoBehaviour
         }
     }
 
+    
     void OnTriggerEnter(Collider obj)
     {
         fanCode(obj);
@@ -39,15 +53,15 @@ public class FanScript : MonoBehaviour
 
     void fanCode(Collider obj)
     {
-        Vector3 distVect = (obj.transform.position - gameObject.transform.position);
-        Rigidbody objBody = obj.GetComponent<Rigidbody>();
-        Vector3 dirVect = Vector3.zero;
-        string forceName =  "unknown";
-        float fanForce;
-        float dist = 0;
-
-        if (validDir)
+        if (validDir && fanOn)
         {
+            Rigidbody objBody = obj.GetComponent<Rigidbody>();
+            Vector3 distVect = (obj.transform.position - gameObject.transform.position);
+            Vector3 dirVect = Vector3.zero;
+            string forceName = "unknown";
+            float fanForce = 0;
+            float dist = 0;
+
             switch (windAxis)
             {
                 case "x":
@@ -70,11 +84,35 @@ public class FanScript : MonoBehaviour
                     break;
             }
 
-            dist = Mathf.Abs(dist);
             fanForce = speed / (dist * dist);
             if (fanForce > fanCap) fanForce = fanCap;
             objBody.AddForce(dirVect * fanForce);
             Debug.Log(forceName + " " + fanForce);
+        }
+    }
+
+    internal void FanActiveCode()
+    {
+        fanOn = true; //fan affects objects within trigger
+        ParSys.Play(); //fan particle effect starts generating
+    }
+
+    internal void FanInactiveCode()
+    {
+        fanOn = false; //fan no longer affects objects within trigger
+        ParSys.Stop(); //fan particle effect stops generating
+    }
+
+    IEnumerator fanTiming()
+    {
+        while (true)
+        {
+            FanActiveCode();
+            yield return new WaitForSeconds(timeOn); //delays code for length than fan is on
+
+            FanInactiveCode();
+            yield return new WaitForSeconds(timeOff); //delays code for length fan is off
+            //code loops to the start of while statement once delay has passed
         }
     }
 }

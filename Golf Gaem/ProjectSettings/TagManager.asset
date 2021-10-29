@@ -6,6 +6,11 @@ TagManager:
   tags:
   - OutOfBounds
   - Floor
+  - Wall
+  - Object
+  - Decor
+  - Roof
+  - Door
   layers:
   - Default
   - TransparentFX
