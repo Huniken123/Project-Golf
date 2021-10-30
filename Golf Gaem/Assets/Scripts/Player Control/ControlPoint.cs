@@ -65,11 +65,15 @@ public class ControlPoint : MonoBehaviour
         if (ball.velocity == new Vector3(0, 0, 0)) rend.material.color = Color.white;
         else rend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
 
-        if (isShooting) Debug.Log("isShooting is true");
-        else Debug.Log("isShooting is not true");
+        //if (isShooting) Debug.Log("isShooting is true");
+        //else Debug.Log("isShooting is not true");
+
+        Debug.Log("isShooting: " + isShooting);
+        Debug.Log("isShot: " + isShot);
+
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
-        if (Input.GetMouseButtonUp(0)) isShot = true;
+        if (Input.GetMouseButtonUp(0) && ball.velocity == Vector3.zero) isShot = true;
 
         if (ball.position.y <= killboxY)
         {
