@@ -59,17 +59,11 @@ public class ControlPoint : MonoBehaviour
             dragReleasePos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
             shootPower = (dragStartPos.y - dragReleasePos.y);
             if (shootPower < 0) shootPower = 0;
-            if (shootPower >= 5) shootPower = 5;
+            if (shootPower >= 4) shootPower = 4;
         }
 
         if (ball.velocity == new Vector3(0, 0, 0)) rend.material.color = Color.white;
         else rend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
-
-        //if (isShooting) Debug.Log("isShooting is true");
-        //else Debug.Log("isShooting is not true");
-
-        Debug.Log("isShooting: " + isShooting);
-        Debug.Log("isShot: " + isShot);
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && ball.velocity == Vector3.zero) isShot = true;
@@ -124,10 +118,10 @@ public class ControlPoint : MonoBehaviour
 
         if(isShooting == false)
         {
-            if (shootPower >= 1)
+            if (shootPower >= 0.1f)
             {
                 ball.isKinematic = false;
-                ball.AddForce(transform.forward * (shootPower * 300));
+                ball.AddForce(transform.forward * (shootPower * 400));
                 if (shootPower < 5) Debug.Log("Shot power: " + shootPower);
                 else Debug.Log("Max shot power");
                 shotCount++;
