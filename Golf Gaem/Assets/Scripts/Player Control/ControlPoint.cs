@@ -71,7 +71,6 @@ public class ControlPoint : MonoBehaviour
         Debug.Log("isShooting: " + isShooting);
         Debug.Log("isShot: " + isShot);
 
-
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && ball.velocity == Vector3.zero) isShot = true;
 
@@ -120,6 +119,7 @@ public class ControlPoint : MonoBehaviour
             isShooting = false;
             ball.velocity = new Vector3(0,0,0); // Tobey - Fixes a glitch and also stops any ball momentum with a single click. Potentially good for precise platforming if worked on more.
             // maybe keep this in for space level
+            isShot = false;
         }
 
         if(isShooting == false)
