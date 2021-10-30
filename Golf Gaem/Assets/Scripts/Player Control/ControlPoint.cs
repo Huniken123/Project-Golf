@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControlPoint : MonoBehaviour
 {
+    #region Variables
     public static ControlPoint cPoint;
 
     [Header("Camera:")]
@@ -12,19 +13,20 @@ public class ControlPoint : MonoBehaviour
 
     [Header("Ball and Shooting:")]
     public Rigidbody ball;
-    float shootPower;
+    internal float shootPower;
     Vector3 ballLastShot;                  // stores respawn point
     [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
-    Vector3 dragStartVal, dragReleaseVal;
-    float dragStartPos, dragReleasePos;    // Tobey - The Y position of where the player presses then releases on the screen
+    Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
     public static bool isGrounded = false;
+    int shotCount = 0;                    // keeps track of how many times the ball was shot. Does nothing currently
 
     // TODO: Make right click pretend the y value is way lower than it actually is so that you can do a proper arc shot
 
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
     public float lineLength = 4f;          // make this scale based on shot power
+    #endregion
 
     private void Awake()
     {
@@ -50,15 +52,18 @@ public class ControlPoint : MonoBehaviour
         if (yRot < -30f) yRot = -30f;
         if (yRot > 30f) yRot = 30f;
         transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
-        #endregion
-
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
+        #endregion
 
         if (Input.GetMouseButtonDown(0) && !isShooting) DragStart(); // add isGrounded check
         if (Input.GetMouseButton(0))
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, transform.position + transform.forward * lineLength);
+            dragReleasePos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
+            shootPower = (dragStartPos.y - dragReleasePos.y);
+            if (shootPower < 0) shootPower = 0;
+            if (shootPower >= 5) shootPower = 5;
         }
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
@@ -94,12 +99,11 @@ public class ControlPoint : MonoBehaviour
     void DragStart()    //  Tobey - Sets up the properties for dragging the ball
     {
         Cursor.lockState = CursorLockMode.Confined;
-        dragStartVal = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
-        dragStartPos = dragStartVal.y;
+        dragStartPos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
         ballLastShot = ball.transform.position;
         Debug.Log("Ball spawn stored. Location: " + ballLastShot);
         isShooting = true;
-        Debug.Log("Drag start position: " + dragStartVal);
+        Debug.Log("Drag start position: " + dragStartPos.y);
         line.enabled = true;
     }
 
@@ -114,15 +118,17 @@ public class ControlPoint : MonoBehaviour
 
         if(isShooting == false)
         {
-            dragReleaseVal = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
-            dragReleasePos = dragReleaseVal.y;
-            shootPower = (dragStartPos - dragReleasePos);
-
             if (shootPower >= 1)
             {
                 ball.isKinematic = false;
                 ball.AddForce(transform.forward * (shootPower * 300));
+                if (shootPower < 5) Debug.Log("Shot power: " + shootPower);
+                else Debug.Log("Max shot power");
+                shotCount++;
             }
+            else Debug.Log("Shot wasn't strong enough");
+
+            shootPower = 0f;
             line.enabled = false;
             isGrounded = false;
             isShot = false;
@@ -131,13 +137,10 @@ public class ControlPoint : MonoBehaviour
 
             Debug.Log("Ball released: " + Input.mousePosition);
 
-            Debug.Log("Drag release position: " + dragReleaseVal);
-
-            if (shootPower >= 1) Debug.Log("Shot power: " + shootPower);
-            else Debug.Log("Shot wasn't strong enough");
+            Debug.Log("Drag release position: " + dragReleasePos);
 
             //  Tobey - Prevents numbers from being stored after the equation
-            dragStartPos = 0; dragReleasePos = 0; dragReleaseVal = new Vector3(0, 0, 0); dragStartVal = new Vector3(0, 0, 0);
+            dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
         }
     }
 
