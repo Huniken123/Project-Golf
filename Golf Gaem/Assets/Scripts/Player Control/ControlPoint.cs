@@ -62,6 +62,7 @@ public class ControlPoint : MonoBehaviour
             if (shootPower >= 4) shootPower = 4;
         }
 
+        if (ball.velocity.sqrMagnitude <= 0.005f) ball.velocity = Vector3.zero;
         if (ball.velocity == new Vector3(0, 0, 0)) rend.material.color = Color.white;
         else rend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
 

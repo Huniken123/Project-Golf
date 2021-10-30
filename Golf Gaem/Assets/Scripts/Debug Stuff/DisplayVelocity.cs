@@ -13,6 +13,6 @@ public class DisplayVelocity : MonoBehaviour
 
     private void Update()
     {
-        velocityText.text = cPoint.ball.velocity.ToString();
+        velocityText.text = cPoint.ball.velocity.magnitude.ToString();
     }
 }
