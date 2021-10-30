@@ -5,7 +5,6 @@ using UnityEngine;
 public class ControlPoint : MonoBehaviour
 {
     #region Variables
-    public static ControlPoint cPoint;
 
     [Header("Camera:")]
     float xRot, yRot = 0f;
@@ -13,25 +12,21 @@ public class ControlPoint : MonoBehaviour
 
     [Header("Ball and Shooting:")]
     public Rigidbody ball;
+    internal Renderer rend;
     internal float shootPower;
     Vector3 ballLastShot;                  // stores respawn point
     [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
     Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
-    public static bool isGrounded = false;
-    int shotCount = 0;                    // keeps track of how many times the ball was shot. Does nothing currently
+    int shotCount = 0;                     // keeps track of how many times the ball was shot. Does nothing currently
 
     // TODO: Make right click pretend the y value is way lower than it actually is so that you can do a proper arc shot
 
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
     public float lineLength = 4f;          // make this scale based on shot power
-    #endregion
 
-    private void Awake()
-    {
-        cPoint = this;
-    }
+    #endregion
 
     private void Start()
     {
@@ -39,6 +34,7 @@ public class ControlPoint : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;     // Tobey - Confines the cursor into the window
         isShooting = false; isShot = false;
         line = GetComponent<LineRenderer>();
+        rend = ball.GetComponent<Renderer>();
         line.enabled = false;
     }
 
@@ -55,7 +51,7 @@ public class ControlPoint : MonoBehaviour
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
         #endregion
 
-        if (Input.GetMouseButtonDown(0) && !isShooting) DragStart(); // add isGrounded check
+        if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();
         if (Input.GetMouseButton(0))
         {
             line.SetPosition(0, transform.position);
@@ -65,6 +61,12 @@ public class ControlPoint : MonoBehaviour
             if (shootPower < 0) shootPower = 0;
             if (shootPower >= 5) shootPower = 5;
         }
+
+        if (ball.velocity == new Vector3(0, 0, 0)) rend.material.color = Color.white;
+        else rend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
+
+        if (isShooting) Debug.Log("isShooting is true");
+        else Debug.Log("isShooting is not true");
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0)) isShot = true;
@@ -101,9 +103,9 @@ public class ControlPoint : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         dragStartPos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
         ballLastShot = ball.transform.position;
-        Debug.Log("Ball spawn stored. Location: " + ballLastShot);
+        //Debug.Log("Ball spawn stored. Location: " + ballLastShot);
         isShooting = true;
-        Debug.Log("Drag start position: " + dragStartPos.y);
+        //Debug.Log("Drag start position: " + dragStartPos.y);
         line.enabled = true;
     }
 
@@ -130,25 +132,16 @@ public class ControlPoint : MonoBehaviour
 
             shootPower = 0f;
             line.enabled = false;
-            isGrounded = false;
             isShot = false;
 
             Cursor.lockState = CursorLockMode.Locked;
 
-            Debug.Log("Ball released: " + Input.mousePosition);
+            //Debug.Log("Ball released: " + Input.mousePosition);
 
-            Debug.Log("Drag release position: " + dragReleasePos);
+            //Debug.Log("Drag release position: " + dragReleasePos);
 
             //  Tobey - Prevents numbers from being stored after the equation
             dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            //isGrounded = true;
         }
     }
 }

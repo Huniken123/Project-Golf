@@ -18,7 +18,7 @@ public class BallCollisionCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            ControlPoint.isGrounded = true;
+            //ControlPoint.isGrounded = true;
         }
     }
 }
