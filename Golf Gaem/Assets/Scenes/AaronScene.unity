@@ -1018,6 +1018,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74662361274552363, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 74662361274552363, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153215228392822802, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+      propertyPath: lineLength
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5153215229809522577, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2018,6 +2030,9 @@ MonoBehaviour:
   windAxis: y
   fanCap: 300
   speed: 100
+  alwaysOn: 0
+  timeOff: 0
+  timeOn: 0
 --- !u!65 &1334052043
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2908,6 +2923,9 @@ MonoBehaviour:
   windAxis: y
   fanCap: 0
   speed: 0
+  alwaysOn: 0
+  timeOff: 0
+  timeOn: 0
 --- !u!1 &1985342614
 GameObject:
   m_ObjectHideFlags: 0

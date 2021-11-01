@@ -24,7 +24,7 @@ public class ControlPoint : MonoBehaviour
 
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
-    public float lineLength = 4f;          // make this scale based on shot power
+    public float lineLength;          // make this scale based on shot power
 
     #endregion
 
@@ -93,6 +93,7 @@ public class ControlPoint : MonoBehaviour
         if (!Input.GetMouseButtonDown(0) && isShooting)
         {
             DragRelease();
+            lineLength = shootPower * 2;
         }
     }
 
