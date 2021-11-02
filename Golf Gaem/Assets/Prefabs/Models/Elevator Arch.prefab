@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6473951101734653751}
   - component: {fileID: 6473951101734653752}
   - component: {fileID: 6473951101734653753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 6473951101775083865}
   - component: {fileID: 6473951101775083866}
   - component: {fileID: 6473951101775083867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (8)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 6473951101839815444}
   - component: {fileID: 6473951101839815445}
   - component: {fileID: 6473951101839815446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 6473951101956974522}
   - component: {fileID: 6473951101956974523}
   - component: {fileID: 6473951101956974524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (10)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -1265,7 +1265,7 @@ GameObject:
   - component: {fileID: 6473951102027991912}
   - component: {fileID: 6473951102027991913}
   - component: {fileID: 6473951102027991914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1578,7 +1578,7 @@ GameObject:
   - component: {fileID: 6473951102175883116}
   - component: {fileID: 6473951102175883117}
   - component: {fileID: 6473951102175883118}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1891,7 +1891,7 @@ GameObject:
   - component: {fileID: 6473951102229738322}
   - component: {fileID: 6473951102229738323}
   - component: {fileID: 6473951102229738324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (7)
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -2204,7 +2204,7 @@ GameObject:
   - component: {fileID: 6473951102236384498}
   - component: {fileID: 6473951102236384499}
   - component: {fileID: 6473951102236384500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam Right
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2517,7 +2517,7 @@ GameObject:
   - component: {fileID: 6473951102394094131}
   - component: {fileID: 6473951102394094132}
   - component: {fileID: 6473951102394094133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -2864,7 +2864,7 @@ GameObject:
   - component: {fileID: 6473951102470037014}
   - component: {fileID: 6473951102470037015}
   - component: {fileID: 6473951102470037016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -3177,7 +3177,7 @@ GameObject:
   - component: {fileID: 6473951102608536233}
   - component: {fileID: 6473951102608536234}
   - component: {fileID: 6473951102608536235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam Left
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3490,7 +3490,7 @@ GameObject:
   - component: {fileID: 6473951102618247392}
   - component: {fileID: 6473951102618247393}
   - component: {fileID: 6473951102618247394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -3803,7 +3803,7 @@ GameObject:
   - component: {fileID: 6473951102709643726}
   - component: {fileID: 6473951102709643727}
   - component: {fileID: 6473951102709643728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door Runner Top
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -4116,7 +4116,7 @@ GameObject:
   - component: {fileID: 6473951102715997893}
   - component: {fileID: 6473951102715997894}
   - component: {fileID: 6473951102715997895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam Top
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -4429,7 +4429,7 @@ GameObject:
   - component: {fileID: 6473951102828910760}
   - component: {fileID: 6473951102828910761}
   - component: {fileID: 6473951102828910762}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4742,7 +4742,7 @@ GameObject:
   - component: {fileID: 6473951102870361466}
   - component: {fileID: 6473951102870361467}
   - component: {fileID: 6473951102870361468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5055,7 +5055,7 @@ GameObject:
   - component: {fileID: 6473951103101108619}
   - component: {fileID: 6473951103101108620}
   - component: {fileID: 6473951103101108621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (9)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -5368,7 +5368,7 @@ GameObject:
   - component: {fileID: 6473951103289384165}
   - component: {fileID: 6473951103289384166}
   - component: {fileID: 6473951103289384167}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (11)
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -5681,7 +5681,7 @@ GameObject:
   - component: {fileID: 6473951103372208749}
   - component: {fileID: 6473951103372208750}
   - component: {fileID: 6473951103372208751}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Roof
   m_Icon: {fileID: 0}
@@ -6042,7 +6042,7 @@ GameObject:
   - component: {fileID: 6473951103458695695}
   - component: {fileID: 6473951103458695696}
   - component: {fileID: 6473951103458695697}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door Runner Bottom
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -6355,7 +6355,7 @@ GameObject:
   - component: {fileID: 6473951103836180469}
   - component: {fileID: 6473951103836180470}
   - component: {fileID: 6473951103836180471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Roof
   m_Icon: {fileID: 0}

@@ -53,7 +53,7 @@ public class FanScript : MonoBehaviour
 
     void fanCode(Collider obj)
     {
-        if (validDir && fanOn)
+        if (validDir && obj.gameObject.tag == "Player" && fanOn)
         {
             Rigidbody objBody = obj.GetComponent<Rigidbody>();
             Vector3 distVect = (obj.transform.position - gameObject.transform.position);
