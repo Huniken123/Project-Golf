@@ -12,19 +12,19 @@ public class ControlPoint : MonoBehaviour
 
     [Header("Ball and Shooting:")]
     public Rigidbody ball;
-    internal Renderer rend;
-    internal float shootPower;
-    Vector3 ballLastShot;                  // stores respawn point
-    [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
+    internal Renderer ballRend;
     Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
-    int shotCount = 0;                     // keeps track of how many times the ball was shot. Does nothing currently
+    internal float shootPower;             // force ball gets shot at
 
-    // TODO: Make right click pretend the y value is way lower than it actually is so that you can do a proper arc shot
+    [Header("Respawning:")]
+    Vector3 ballLastShot;                  // stores respawn point
+    [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
+    int shotCount = 0;                     // keeps track of how many times the ball was shot. Does nothing currently
 
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
-    public float lineLength;          // make this scale based on shot power
+    public float lineLength;
 
     #endregion
 
@@ -34,7 +34,7 @@ public class ControlPoint : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;     // Tobey - Confines the cursor into the window
         isShooting = false; isShot = false;
         line = GetComponent<LineRenderer>();
-        rend = ball.GetComponent<Renderer>();
+        ballRend = ball.GetComponent<Renderer>();
         line.enabled = false;
     }
 
@@ -53,7 +53,7 @@ public class ControlPoint : MonoBehaviour
         #endregion
         // look in here again for right click thing
 
-        if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero && ball.angularVelocity == Vector3.zero) DragStart();
+        if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();
         if (Input.GetMouseButton(0))
         {
             line.SetPosition(0, transform.position);
@@ -66,8 +66,8 @@ public class ControlPoint : MonoBehaviour
 
         if (ball.velocity.magnitude <= 0.005f) ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero;
 
-        if (ball.velocity == new Vector3(0, 0, 0)) rend.material.color = Color.white;
-        else rend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
+        if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
+        else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && ball.velocity == Vector3.zero) isShot = true;
@@ -103,9 +103,10 @@ public class ControlPoint : MonoBehaviour
             ball.velocity = new Vector3(0,0,0); // Tobey - Fixes a glitch and also stops any ball momentum with a single click. Potentially good for precise platforming if worked on more.
             // maybe keep this in for space level
             isShot = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if(isShooting == false)
+        if (isShooting == false)
         {
             if (shootPower >= 0.1f)
             {
@@ -136,6 +137,7 @@ public class ControlPoint : MonoBehaviour
     {
         ball.position = ballLastShot;
         Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
-        ball.velocity = new Vector3(0, 0, 0);
+        ball.velocity = Vector3.zero;
+        shootPower = 0;
     }
 }
