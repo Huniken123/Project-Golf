@@ -10,6 +10,7 @@ public class FanScript : MonoBehaviour
     
     internal bool validDir = false;
     internal bool fanOn = false;
+    [SerializeField()] bool debugCheck;
 
     [Header("Fan Timing")]
     public bool alwaysOn;
@@ -87,10 +88,11 @@ public class FanScript : MonoBehaviour
             fanForce = speed / (dist * dist);
             if (fanForce > fanCap) fanForce = fanCap;
             objBody.AddForce(dirVect * fanForce);
-            Debug.Log(forceName + " " + fanForce);
+            if(debugCheck)
+                Debug.Log(forceName + " " + fanForce);
         }
-    }
 
+    }
     internal void FanActiveCode()
     {
         fanOn = true; //fan affects objects within trigger
