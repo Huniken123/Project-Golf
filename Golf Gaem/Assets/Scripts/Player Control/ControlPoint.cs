@@ -70,9 +70,11 @@ public class ControlPoint : MonoBehaviour
         else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
-        if (Input.GetMouseButtonUp(0) && ball.velocity == Vector3.zero) isShot = true;
+        if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
 
         if (ball.position.y <= killboxY) Respawn();
+
+        TempDebugStuff();
     }
 
     private void FixedUpdate()
@@ -89,10 +91,10 @@ public class ControlPoint : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         dragStartPos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
         ballLastShot = ball.transform.position;
-        //Debug.Log("Ball spawn stored. Location: " + ballLastShot);
         isShooting = true;
-        //Debug.Log("Drag start position: " + dragStartPos.y);
         line.enabled = true;
+        //Debug.Log("Ball spawn stored. Location: " + ballLastShot);
+        //Debug.Log("Drag start position: " + dragStartPos.y);
     }
 
     void DragRelease()  //  Tobey - Sets up the properties for releasing the ball
@@ -113,7 +115,7 @@ public class ControlPoint : MonoBehaviour
                 ball.isKinematic = false;
                 ball.AddForce(transform.forward * (shootPower * 400));
                 if (shootPower < 5) Debug.Log("Shot power: " + shootPower);
-                else Debug.Log("Max shot power");
+                //else Debug.Log("Max shot power");
                 shotCount++;
             }
             else Debug.Log("Shot wasn't strong enough");
@@ -139,5 +141,15 @@ public class ControlPoint : MonoBehaviour
         Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
         ball.velocity = Vector3.zero;
         shootPower = 0;
+    }
+
+    void TempDebugStuff()
+    {
+        Debug.Log("isShooting state: " + isShooting);
+        Debug.Log("isShot state: " + isShot);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+        }
     }
 }
