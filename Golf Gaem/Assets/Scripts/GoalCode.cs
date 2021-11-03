@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GoalCode : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool finalGoal;
+    public string nextSceneName;
 
     // Update is called once per frame
     void OnTriggerEnter()
     {
-        Debug.Log("A Winner Is You");
+        if (finalGoal)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            Debug.Log("A Winner Is You");
+            Application.Quit();
+        }
+
+        else
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 }

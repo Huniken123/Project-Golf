@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5970112c7e859df43978338ca4f58dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windAxis: y
+  windAxis: z
   fanCap: 100
   speed: 50
   alwaysOn: 0

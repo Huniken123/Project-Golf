@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 7994424552923660327}
   - component: {fileID: 7994424552923660320}
   - component: {fileID: 7994424552923660321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sticky Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
