@@ -49,9 +49,11 @@ public class ControlPoint : MonoBehaviour
         if (yRot > 30f) yRot = 30f;
         transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
+        // MODIFY THIS FOR THE RIGHT CLICK IDEA
         #endregion
+        // look in here again for right click thing
 
-        if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();
+        if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero && ball.angularVelocity == Vector3.zero) DragStart();
         if (Input.GetMouseButton(0))
         {
             line.SetPosition(0, transform.position);
@@ -62,30 +64,15 @@ public class ControlPoint : MonoBehaviour
             if (shootPower >= 4) shootPower = 4;
         }
 
-        if (ball.velocity.sqrMagnitude <= 0.005f) ball.velocity = Vector3.zero;
+        if (ball.velocity.magnitude <= 0.005f) ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero;
+
         if (ball.velocity == new Vector3(0, 0, 0)) rend.material.color = Color.white;
         else rend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
 
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && ball.velocity == Vector3.zero) isShot = true;
 
-        if (ball.position.y <= killboxY)
-        {
-            ball.position = ballLastShot;
-            Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
-            ball.velocity = new Vector3(0,0,0);
-        }
-
-        #region Tobey's ball trajectory code that doesn't work (might get rid of this)
-        //  Tobey - This is code related to the Line Trajectory UI. I'd recommend commenting it out as it doesn't fully work at the moment.
-        /*#region Line Trajectory Code
-        Vector3 forceV = ball.velocity * shootPower;
-
-        if(Input.GetMouseButton(0))
-        {
-            LineTrajectory.Instance.UpdateTrajectory(forceVector: forceV, ball, startingPoint: transform.position);
-        }*/
-        #endregion
+        if (ball.position.y <= killboxY) Respawn();
     }
 
     private void FixedUpdate()
@@ -143,5 +130,12 @@ public class ControlPoint : MonoBehaviour
             //  Tobey - Prevents numbers from being stored after the equation
             dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
         }
+    }
+
+    void Respawn()
+    {
+        ball.position = ballLastShot;
+        Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
+        ball.velocity = new Vector3(0, 0, 0);
     }
 }
