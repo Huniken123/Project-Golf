@@ -11,7 +11,7 @@ public class CamSeeCode : MonoBehaviour
     //public float endRadius;
 
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         GetObstructions();
     }
