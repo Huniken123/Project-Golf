@@ -49,10 +49,11 @@ public class ControlPoint : MonoBehaviour
         if (yRot > 30f) yRot = 30f;
         transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
         ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
-        // MODIFY THIS FOR THE RIGHT CLICK IDEA
+                                                                                                // MODIFY THIS FOR THE RIGHT CLICK IDEA
         #endregion
         // look in here again for right click thing
 
+        #region Controls
         if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();
         if (Input.GetMouseButton(0))
         {
@@ -63,18 +64,17 @@ public class ControlPoint : MonoBehaviour
             if (shootPower < 0) shootPower = 0;
             if (shootPower >= 4) shootPower = 4;
         }
+        if (Input.GetMouseButtonDown(1) && isShooting) CancelShot();
+        //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
+        if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
+        #endregion
 
         if (ball.velocity.magnitude <= 0.005f) ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero;
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
         else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
 
-        //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
-        if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
-
         if (ball.position.y <= killboxY) Respawn();
-
-        TempDebugStuff();
     }
 
     private void FixedUpdate()
@@ -114,24 +114,13 @@ public class ControlPoint : MonoBehaviour
             {
                 ball.isKinematic = false;
                 ball.AddForce(transform.forward * (shootPower * 400));
-                if (shootPower < 5) Debug.Log("Shot power: " + shootPower);
+                if (shootPower < 3.99f) Debug.Log("Shot power: " + shootPower);
                 //else Debug.Log("Max shot power");
                 shotCount++;
             }
             else Debug.Log("Shot wasn't strong enough");
 
-            shootPower = 0f;
-            line.enabled = false;
-            isShot = false;
-
-            Cursor.lockState = CursorLockMode.Locked;
-
-            //Debug.Log("Ball released: " + Input.mousePosition);
-
-            //Debug.Log("Drag release position: " + dragReleasePos);
-
-            //  Tobey - Prevents numbers from being stored after the equation
-            dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
+            CancelShot();
         }
     }
 
@@ -143,13 +132,12 @@ public class ControlPoint : MonoBehaviour
         shootPower = 0;
     }
 
-    void TempDebugStuff()
+    void CancelShot()
     {
-        Debug.Log("isShooting state: " + isShooting);
-        Debug.Log("isShot state: " + isShot);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-        }
+        line.enabled = false;
+        shootPower = 0f;
+        Cursor.lockState = CursorLockMode.Locked;
+        dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
+        isShot = false; isShooting = false;
     }
 }
