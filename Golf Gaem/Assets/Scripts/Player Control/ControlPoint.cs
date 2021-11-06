@@ -12,10 +12,11 @@ public class ControlPoint : MonoBehaviour
 
     [Header("Ball and Shooting:")]
     public Rigidbody ball;
-    internal Renderer ballRend;
+    Renderer ballRend;
     Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
     internal float shootPower;             // force ball gets shot at
+    bool arcShot = false;                  // if true, then do arc shot. if not, don't
 
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
@@ -48,8 +49,8 @@ public class ControlPoint : MonoBehaviour
         if (yRot < -30f) yRot = -30f;
         if (yRot > 30f) yRot = 30f;
         transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
-        ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
-                                                                                                // MODIFY THIS FOR THE RIGHT CLICK IDEA
+        //if (arcShot) ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 10);
+        //else ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
         #endregion
         // look in here again for right click thing
 
@@ -67,9 +68,12 @@ public class ControlPoint : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && isShooting) CancelShot();
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isShooting && !arcShot) arcShot = true;
+        if (Input.GetKeyDown(KeyCode.Space) && isShooting && arcShot) arcShot = false;
         #endregion
 
-        if (ball.velocity.magnitude <= 0.005f) ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero;
+        if (ball.velocity.magnitude <= 0.005f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
         else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
@@ -102,8 +106,7 @@ public class ControlPoint : MonoBehaviour
         if (isShot)
         {
             isShooting = false;
-            ball.velocity = new Vector3(0,0,0); // Tobey - Fixes a glitch and also stops any ball momentum with a single click. Potentially good for precise platforming if worked on more.
-            // maybe keep this in for space level
+            ball.velocity = new Vector3(0,0,0); // Tobey - Fixes a glitch and also stops any ball momentum with a single click while trying to shoot in the air, assuming that's on
             isShot = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -112,10 +115,10 @@ public class ControlPoint : MonoBehaviour
         {
             if (shootPower >= 0.1f)
             {
-                ball.isKinematic = false;
+                ball.isKinematic = false; // i think this is here for sticky wall purposes
                 ball.AddForce(transform.forward * (shootPower * 400));
                 if (shootPower < 3.99f) Debug.Log("Shot power: " + shootPower);
-                //else Debug.Log("Max shot power");
+                else Debug.Log("Max shot power");
                 shotCount++;
             }
             else Debug.Log("Shot wasn't strong enough");
@@ -138,6 +141,7 @@ public class ControlPoint : MonoBehaviour
         shootPower = 0f;
         Cursor.lockState = CursorLockMode.Locked;
         dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
+        arcShot = false;
         isShot = false; isShooting = false;
     }
 }
