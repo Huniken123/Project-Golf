@@ -5701,11 +5701,7 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5153215230441525584, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
-      propertyPath: m_AngularDrag
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5153215230441525584, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
-      propertyPath: m_IsKinematic
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
