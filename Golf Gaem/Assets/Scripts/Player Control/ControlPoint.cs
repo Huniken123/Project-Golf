@@ -16,7 +16,6 @@ public class ControlPoint : MonoBehaviour
     Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
     internal float shootPower;             // force ball gets shot at
-    bool arcShot = false;                  // if true, then do arc shot. if not, don't
 
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
@@ -42,38 +41,28 @@ public class ControlPoint : MonoBehaviour
     private void Update()
     {
         transform.position = ball.position;
-        #region Camera Movement
-        xRot += Input.GetAxis("Mouse X") * rotationSpeed;
-        if (!isShooting) yRot += Input.GetAxis("Mouse Y") * rotationSpeed;
-        // lock camera y axis while shooting
-        if (yRot < -30f) yRot = -30f;
-        if (yRot > 30f) yRot = 30f;
-        transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
-        //if (arcShot) ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 10);
-        //else ball.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);     //  Tobey - Sets the Y axis of the ball to the Y axis of the Control Point
-        #endregion
+        CameraMovement();
         // look in here again for right click thing
 
         #region Controls
         if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();
-        if (Input.GetMouseButton(0))
-        {
-            line.SetPosition(0, transform.position);
-            line.SetPosition(1, transform.position + transform.forward * lineLength);
-            dragReleasePos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
-            shootPower = (dragStartPos.y - dragReleasePos.y);
-            if (shootPower < 0) shootPower = 0;
-            if (shootPower >= 4) shootPower = 4;
-        }
         if (Input.GetMouseButtonDown(1) && isShooting) CancelShot();
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
-
-        if (Input.GetKeyDown(KeyCode.Space) && isShooting && !arcShot) arcShot = true;
-        if (Input.GetKeyDown(KeyCode.Space) && isShooting && arcShot) arcShot = false;
         #endregion
+    }
 
-        if (ball.velocity.magnitude <= 0.005f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
+    private void FixedUpdate()
+    {
+        ShotPreview();
+
+        if (!Input.GetMouseButtonDown(0) && isShooting)
+        {
+            DragRelease();
+            lineLength = shootPower * 2;
+        }
+
+        if (ball.velocity.magnitude <= 0.01f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
         else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
@@ -81,13 +70,14 @@ public class ControlPoint : MonoBehaviour
         if (ball.position.y <= killboxY) Respawn();
     }
 
-    private void FixedUpdate()
+    void CameraMovement()
     {
-        if (!Input.GetMouseButtonDown(0) && isShooting)
-        {
-            DragRelease();
-            lineLength = shootPower * 2;
-        }
+        xRot += Input.GetAxis("Mouse X") * rotationSpeed;
+        if (!isShooting) yRot += Input.GetAxis("Mouse Y") * rotationSpeed;
+        // lock camera y axis while shooting
+        if (yRot < -30f) yRot = -30f;
+        if (yRot > 30f) yRot = 30f;
+        transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
     }
 
     void DragStart()    //  Tobey - Sets up the properties for dragging the ball
@@ -127,6 +117,19 @@ public class ControlPoint : MonoBehaviour
         }
     }
 
+    void ShotPreview()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, transform.position + transform.forward * lineLength);
+            dragReleasePos = Camera.main.ScreenToWorldPoint(new Vector3(0, Input.mousePosition.y, Camera.main.nearClipPlane + 7f));
+            shootPower = (dragStartPos.y - dragReleasePos.y);
+            if (shootPower < 0) shootPower = 0;
+            if (shootPower >= 4) shootPower = 4;
+        }
+    }
+
     void Respawn()
     {
         ball.position = ballLastShot;
@@ -141,7 +144,6 @@ public class ControlPoint : MonoBehaviour
         shootPower = 0f;
         Cursor.lockState = CursorLockMode.Locked;
         dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
-        arcShot = false;
         isShot = false; isShooting = false;
     }
 }

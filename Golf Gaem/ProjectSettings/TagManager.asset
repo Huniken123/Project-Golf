@@ -11,6 +11,7 @@ TagManager:
   - Decor
   - Roof
   - Door
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
