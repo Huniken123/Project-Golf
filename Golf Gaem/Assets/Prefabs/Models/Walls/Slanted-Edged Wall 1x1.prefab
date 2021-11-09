@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7255878760121605252}
   - component: {fileID: 4852338327762331726}
   - component: {fileID: 9084211917419267224}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slanted-Edged Wall 1x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
