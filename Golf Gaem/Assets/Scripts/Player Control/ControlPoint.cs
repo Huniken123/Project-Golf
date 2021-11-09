@@ -8,7 +8,7 @@ public class ControlPoint : MonoBehaviour
 
     [Header("Camera:")]
     float xRot, yRot = 0f;
-    public float rotationSpeed = 2f;
+    public float camLookSpeed = 2f;
 
     [Header("Ball and Shooting:")]
     public Rigidbody ball;
@@ -72,8 +72,8 @@ public class ControlPoint : MonoBehaviour
 
     void CameraMovement()
     {
-        xRot += Input.GetAxis("Mouse X") * rotationSpeed;
-        if (!isShooting) yRot += Input.GetAxis("Mouse Y") * rotationSpeed;
+        xRot += Input.GetAxis("Mouse X") * camLookSpeed;
+        if (!isShooting) yRot += Input.GetAxis("Mouse Y") * camLookSpeed;
         // lock camera y axis while shooting
         if (yRot < -30f) yRot = -30f;
         if (yRot > 30f) yRot = 30f;

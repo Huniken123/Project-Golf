@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34016ed100018e4cbacca5f8df7993d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
+  camLookSpeed: 2
   ball: {fileID: 5153215230441525584}
   killboxY: -10
   lineLength: 4
@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 5153215229491258885}
   - component: {fileID: 5153215229491258886}
   - component: {fileID: 7113284703766747630}
+  - component: {fileID: 2642413785822171196}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -287,6 +288,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5153215230441525596}
   obstructions: []
+--- !u!114 &2642413785822171196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5153215229491259002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3d8cc3e947d0c4e82fecac50275fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceTransform: {fileID: 5153215228392822813}
+  collisionOffset: 0.3
+  cameraSpeed: 15
 --- !u!1 &5153215229809522582
 GameObject:
   m_ObjectHideFlags: 0
