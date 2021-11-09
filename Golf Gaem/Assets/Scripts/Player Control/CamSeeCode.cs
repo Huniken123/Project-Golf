@@ -11,7 +11,7 @@ public class CamSeeCode : MonoBehaviour
     //public float endRadius;
 
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         GetObstructions();
     }
@@ -20,9 +20,10 @@ public class CamSeeCode : MonoBehaviour
     {
         float characterDistance = Vector3.Distance(transform.position, player.transform.position);
         int layerMask = 1 << 6; //Raycast only gets colliders in layer 6 ("Terrain")
-
+        Vector3 orig = transform.position;
+        Vector3 direc = player.position - transform.position;
         RaycastHit[] hits = Physics.RaycastAll(transform.position, player.position - transform.position, characterDistance, layerMask);
-
+        
         if(hits.Length > 0) //if raycast detects objects between it and the player - Alice
         {
             for (int i = 0; i < obstructions.Length; i++) //Function cycles through all objects in provided array - Alice
@@ -41,13 +42,13 @@ public class CamSeeCode : MonoBehaviour
         }
     }
 
-    public static RaycastHit[] ConeCastAll(Vector3 origin, float maxRadius, Vector3 direction, float maxDistance, float coneAngle)
+    public static RaycastHit[] ConeCastAll(Vector3 origin, float maxRadius, Vector3 direction, float charDistance, float coneAngle, int mask)
     {
         //USE: Works like a spherecast except it's a cone
 
         //CREDIT: Created by walterellisfun (https://github.com/walterellisfun/ConeCast/blob/master/ConeCastExtension.cs), minor modifications made by Christian Hotte
 
-        RaycastHit[] sphereCastHits = Physics.SphereCastAll(origin - new Vector3(0, 0, maxRadius), maxRadius, direction, maxDistance);
+        RaycastHit[] sphereCastHits = Physics.SphereCastAll(origin - new Vector3(0, 0, maxRadius), maxRadius, direction, charDistance, mask);
         List<RaycastHit> coneCastHitList = new List<RaycastHit>();
 
         if (sphereCastHits.Length > 0)
