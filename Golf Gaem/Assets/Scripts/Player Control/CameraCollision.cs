@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraCollision : MonoBehaviour
 {
     // adapted from this tutorial: https://sharpcoderblog.com/blog/third-person-camera-in-unity-3d
+    // make script so that it doesn't fully collide with wall so that it works good with Aaron's shader
 
     public Transform referenceTransform;
     public float collisionOffset = 0.3f; //To prevent Camera from clipping through Objects
