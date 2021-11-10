@@ -48,7 +48,7 @@ MonoBehaviour:
   camLookSpeed: 2
   ball: {fileID: 5153215230441525584}
   killboxY: -10
-  lineLength: 4
+  lineLength: 0
 --- !u!120 &74662361274552363
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0

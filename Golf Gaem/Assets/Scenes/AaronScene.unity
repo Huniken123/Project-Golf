@@ -1022,17 +1022,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 74662361274552363, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0
+    - target: {fileID: 2642413785822171196, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 74662361274552363, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5153215228392822802, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
-      propertyPath: lineLength
-      value: 0
+    - target: {fileID: 2642413785822171196, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+      propertyPath: collisionOffset
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5153215229491258884, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
       propertyPath: m_OcclusionCulling
