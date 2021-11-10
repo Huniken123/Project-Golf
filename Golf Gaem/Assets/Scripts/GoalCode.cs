@@ -25,7 +25,7 @@ public class GoalCode : MonoBehaviour
 
         IEnumerator EndApp()
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(1.0f);
             Application.Quit();
         }
     }

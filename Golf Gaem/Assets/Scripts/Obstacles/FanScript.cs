@@ -85,7 +85,7 @@ public class FanScript : MonoBehaviour
                     break;
             }
 
-            fanForce = speed / (dist * dist);
+            fanForce = speed;
             if (fanForce > fanCap) fanForce = fanCap;
             objBody.AddForce(dirVect * fanForce);
             if(debugCheck)
