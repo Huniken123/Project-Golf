@@ -15,7 +15,8 @@ public class ControlPoint : MonoBehaviour
     Renderer ballRend;
     Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
-    internal float shootPower;             // force ball gets shot at
+    internal float shootPower;             // force ball gets shot at (in update/UI, don't touch this)
+    public int shootMult = 4;          // multiplier for shot (mess with this)
 
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
@@ -103,15 +104,18 @@ public class ControlPoint : MonoBehaviour
 
         if (isShooting == false)
         {
-            if (shootPower >= 0.1f)
-            {
-                ball.isKinematic = false; // i think this is here for sticky wall purposes
-                ball.AddForce(transform.forward * (shootPower * 400));
-                if (shootPower < 3.99f) Debug.Log("Shot power: " + shootPower);
-                else Debug.Log("Max shot power");
-                shotCount++;
-            }
+            ball.isKinematic = false; // i think this is here for sticky wall purposes
+            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); }
+            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); }
+            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); }
+            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); }
+            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); }
+            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); }
             else Debug.Log("Shot wasn't strong enough");
+
+            Debug.Log("Shot power: " + (shootPower * shootMult));
+
+            shotCount++;
 
             CancelShot();
         }
