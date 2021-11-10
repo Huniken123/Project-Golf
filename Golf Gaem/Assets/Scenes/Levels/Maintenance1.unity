@@ -10679,6 +10679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DebugCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 684943882362981204, guid: a42e38a343e600740b6a394a12830342, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 684943882362981208, guid: a42e38a343e600740b6a394a12830342, type: 3}
       propertyPath: m_Pivot.x
       value: 0

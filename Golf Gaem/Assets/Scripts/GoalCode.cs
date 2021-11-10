@@ -15,12 +15,18 @@ public class GoalCode : MonoBehaviour
         {
             gameObject.GetComponent<AudioSource>().Play();
             Debug.Log("A Winner Is You");
-            Application.Quit();
+            StartCoroutine(EndApp());
         }
 
         else
         {
             SceneManager.LoadScene(nextSceneName);
+        }
+
+        IEnumerator EndApp()
+        {
+            yield return new WaitForSeconds(3.0f);
+            Application.Quit();
         }
     }
 }
