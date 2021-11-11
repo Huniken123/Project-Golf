@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camLookSpeed: 2
   ball: {fileID: 5153215230441525584}
+  shootMult: 300
   killboxY: -10
   lineLength: 0
 --- !u!120 &74662361274552363
