@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8258515007168973603}
   - component: {fileID: 1710955048658727974}
   m_Layer: 0
-  m_Name: Pipe Curve Scaled
+  m_Name: Curve Scaled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

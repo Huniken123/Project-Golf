@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9019472471771349368}
   - component: {fileID: 5072143302268278356}
   m_Layer: 0
-  m_Name: Pipe 3x1 Scaled
+  m_Name: 3x1 Scaled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
