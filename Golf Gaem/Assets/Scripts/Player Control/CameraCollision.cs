@@ -13,6 +13,7 @@ public class CameraCollision : MonoBehaviour
     Vector3 directionNormalized;
     Transform parentTransform;
     float defaultDistance;
+    LayerMask lm = 1 << 1;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class CameraCollision : MonoBehaviour
         Vector3 currentPos = defaultPos;
         RaycastHit hit;
         Vector3 dirTmp = parentTransform.TransformPoint(defaultPos) - referenceTransform.position;
-        if (Physics.SphereCast(referenceTransform.position, collisionOffset, dirTmp, out hit, defaultDistance))
+        if (Physics.SphereCast(referenceTransform.position, collisionOffset, dirTmp, out hit, defaultDistance, ~lm, QueryTriggerInteraction.Ignore))
         {
             currentPos = (directionNormalized * (hit.distance - collisionOffset));
 

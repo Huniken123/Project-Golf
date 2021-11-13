@@ -63,7 +63,7 @@ public class ControlPoint : MonoBehaviour
             lineLength = shootPower * 2;
         }
 
-        if (ball.velocity.magnitude <= 0.01f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
+        if (ball.velocity.magnitude <= 0.1f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
         else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
