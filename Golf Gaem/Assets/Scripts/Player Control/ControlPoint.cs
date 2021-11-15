@@ -134,7 +134,7 @@ public class ControlPoint : MonoBehaviour
         }
     }
 
-    void Respawn()
+    public void Respawn()
     {
         ball.position = ballLastShot;
         Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
