@@ -12,6 +12,7 @@ TagManager:
   - Roof
   - Door
   - MovingPlatform
+  - Collectable
   layers:
   - Default
   - TransparentFX
