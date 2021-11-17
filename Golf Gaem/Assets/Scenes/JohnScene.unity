@@ -477,6 +477,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5672235126750104251, guid: 03cded649f8684b19b1c5230c6311267, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31eb2707625b145ebad4fe32a99b93b8, type: 2}
     - target: {fileID: 6176457897166334830, guid: 03cded649f8684b19b1c5230c6311267, type: 3}
       propertyPath: m_Name
       value: Couch
