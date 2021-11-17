@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Collect : MonoBehaviour
+public class ScoringSystem : MonoBehaviour
 {
+    /*
     public GameObject scoreText;
     public static int theScore;
     public List<GameObject> collectList = new List<GameObject>();
-    public int totalCollect;
-
-    public AudioSource collectSound;
 
     void Start()
     {
@@ -19,22 +17,15 @@ public class Collect : MonoBehaviour
             collectList.Add(collectableObjs);
         }
 
-        foreach (var x in collectList)
+        foreach(var x in collectList)
         {
-            totalCollect += 1;
+            Debug.Log(x.ToString());
         }
     }
 
     void Update()
     {
-        scoreText.GetComponent<Text>().text = "Score: " + theScore + "/" + totalCollect;
+        scoreText.GetComponent<Text>().text = "Score: " + theScore;
     }
-
-
-    void OnTriggerEnter(Collider other)
-    {
-        collectSound.Play();
-        theScore += 1;
-        Destroy(gameObject);
-    }
+    */
 }

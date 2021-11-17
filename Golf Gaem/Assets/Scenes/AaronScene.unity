@@ -1677,7 +1677,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23756
+  m_Name: pb_Mesh40050
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1841,7 +1841,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23780
+  m_Name: pb_Mesh40084
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2100,7 +2100,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23666
+  m_Name: pb_Mesh39954
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2287,7 +2287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b920b8c6b6a60c4d8f5f0c924c560e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1996276410}
 --- !u!4 &1240226071
 Transform:
   m_ObjectHideFlags: 0
@@ -2300,7 +2299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1334052040
 GameObject:
@@ -2423,7 +2422,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23680
+  m_Name: pb_Mesh39968
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3326,12 +3325,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6746399874598688785, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1996276410}
+    - target: {fileID: 6746399874598688785, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
       propertyPath: collectSound
       value: 
       objectReference: {fileID: 67172329}
     - target: {fileID: 6746399874598688794, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
       propertyPath: m_Name
       value: Collectable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746399874598688794, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
+      propertyPath: m_TagString
+      value: Collectable
       objectReference: {fileID: 0}
     - target: {fileID: 6746399874598688798, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
       propertyPath: m_RootOrder
@@ -3860,7 +3867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054293811}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 9.01, y: 4.17, z: -5.48}
+  m_LocalPosition: {x: 9.01, y: 4.17, z: -18.29}
   m_LocalScale: {x: 2, y: 7.7403, z: 10.156502}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3970,6 +3977,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6746399874598688785, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1996276410}
+    - target: {fileID: 6746399874598688785, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
       propertyPath: collectSound
       value: 
       objectReference: {fileID: 67172329}
@@ -3977,9 +3988,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 6746399874598688794, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
+      propertyPath: m_TagString
+      value: Collectable
+      objectReference: {fileID: 0}
     - target: {fileID: 6746399874598688798, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6746399874598688798, guid: 3939fb0dce78acb4aa822b44922a196a, type: 3}
       propertyPath: m_LocalPosition.x
