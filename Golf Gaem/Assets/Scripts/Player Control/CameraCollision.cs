@@ -5,9 +5,10 @@ public class CameraCollision : MonoBehaviour
     // adapted from this tutorial: https://sharpcoderblog.com/blog/third-person-camera-in-unity-3d
     // make script so that it doesn't fully collide with wall so that it works good with Aaron's shader
 
-    public Transform referenceTransform;
-    public float collisionOffset = 0.3f; //To prevent Camera from clipping through Objects
+    public Transform ctrlTransform; //transform of control point
+    public float castRadius = 0.3f; //To prevent Camera from clipping through Objects
     public float cameraSpeed = 15f; //How fast the Camera should snap into position if there are no obstacles
+    public Transform minCamPos;
 
     Vector3 defaultPos;
     Vector3 directionNormalized;
@@ -18,7 +19,7 @@ public class CameraCollision : MonoBehaviour
     void Start()
     {
         defaultPos = transform.localPosition;
-        directionNormalized = defaultPos.normalized;
+        directionNormalized = defaultPos.normalized;    
         parentTransform = transform.parent;
         defaultDistance = Vector3.Distance(defaultPos, Vector3.zero);
     }
@@ -27,12 +28,16 @@ public class CameraCollision : MonoBehaviour
     {
         Vector3 currentPos = defaultPos;
         RaycastHit hit;
-        Vector3 dirTmp = parentTransform.TransformPoint(defaultPos) - referenceTransform.position;
-        if (Physics.SphereCast(referenceTransform.position, collisionOffset, dirTmp, out hit, defaultDistance, ~lm, QueryTriggerInteraction.Ignore))
+        Vector3 dirTmp = parentTransform.TransformPoint(defaultPos) - ctrlTransform.position;
+        if (Physics.SphereCast(ctrlTransform.position, castRadius, dirTmp, out hit, defaultDistance, ~lm, QueryTriggerInteraction.Ignore))
         {
-            currentPos = (directionNormalized * (hit.distance - collisionOffset));
+            float minZ = minCamPos.position.z;
+            currentPos = (directionNormalized * (hit.distance - castRadius));
 
-            transform.localPosition = currentPos;
+            if (Mathf.Abs(minZ) > Mathf.Abs(currentPos.z))
+                transform.position = minCamPos.position;
+            else
+                transform.localPosition = currentPos;
         }
         else
         {
