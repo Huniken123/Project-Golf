@@ -7,18 +7,19 @@ public class RampCollision : MonoBehaviour
     GameObject player;
     Rigidbody ballRB;
     bool onRamp = false;
-
+    
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         ballRB = player.GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (onRamp)
+        var locVel = transform.InverseTransformDirection(ballRB.velocity); //gets player's local velocity
+        if (onRamp&&locVel.z < 0) //checks if ball is on ramp and traveling backwards
         {
-            ballRB.AddForce(-Vector3.up * 50f);
+            ballRB.AddForce(transform.forward * -20f);
         }
     }
 
@@ -31,6 +32,8 @@ public class RampCollision : MonoBehaviour
             onRamp = true;
         }
     }
+
+    
 
     private void OnCollisionExit(Collision collision)
     {
