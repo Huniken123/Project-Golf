@@ -14,6 +14,8 @@ public class Collect : MonoBehaviour
 
     void Start()
     {
+        scoreText = GameObject.FindGameObjectWithTag("Score Text");
+        
         foreach (GameObject collectableObjs in GameObject.FindGameObjectsWithTag("Collectable"))
         {
             collectList.Add(collectableObjs);

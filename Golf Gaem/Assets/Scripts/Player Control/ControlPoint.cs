@@ -76,7 +76,7 @@ public class ControlPoint : MonoBehaviour
         xRot += Input.GetAxis("Mouse X") * camLookSpeed;
         if (!isShooting) yRot += Input.GetAxis("Mouse Y") * camLookSpeed;
         // lock camera y axis while shooting
-        if (yRot < -30f) yRot = -30f;
+        if (yRot < -25f) yRot = -25f;
         if (yRot > 30f) yRot = 30f;
         transform.rotation = Quaternion.Euler(yRot, xRot, 0f); // cam control
     }
