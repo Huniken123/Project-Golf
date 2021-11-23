@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1945857432729956255}
   - component: {fileID: 4388164441766419285}
   - component: {fileID: 4042349643984585869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Curved Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

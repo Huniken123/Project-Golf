@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 5153215229491258885}
   - component: {fileID: 5153215229491258886}
   - component: {fileID: 2642413785822171196}
-  - component: {fileID: 6179539677877739525}
+  - component: {fileID: 4352963646788749314}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -460,7 +460,7 @@ MonoBehaviour:
   castRadius: 0.3
   cameraSpeed: 15
   minCamPos: {fileID: 1871846065826477139}
---- !u!114 &6179539677877739525
+--- !u!114 &4352963646788749314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -475,9 +475,10 @@ MonoBehaviour:
   cutoutSize: 0.1
   falloffSize: 0.05
   targetObject: {fileID: 5153215230441525596}
+  minView: {fileID: 1871846065826477139}
   wallMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
 --- !u!1 &5153215229809522582
 GameObject:
   m_ObjectHideFlags: 0
