@@ -14,7 +14,7 @@ public class Collect : MonoBehaviour
 
     void Start()
     {
-        scoreText = GameObject.FindGameObjectWithTag("Score Text");
+        //scoreText = GameObject.FindGameObjectWithTag("Score Text");
         
         foreach (GameObject collectableObjs in GameObject.FindGameObjectsWithTag("Collectable"))
         {
@@ -25,6 +25,8 @@ public class Collect : MonoBehaviour
         {
             totalCollect += 1;
         }
+        //Must put one extra collectable in scene somewhere uncollectable so that the script stays active.
+        totalCollect -= 1;
     }
 
     void Update()
@@ -35,8 +37,10 @@ public class Collect : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        collectSound.Play();
+        Debug.Log("+1");
         theScore += 1;
+        collectSound.Play();
+        //yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }
