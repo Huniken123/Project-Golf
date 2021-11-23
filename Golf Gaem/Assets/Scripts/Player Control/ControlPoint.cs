@@ -16,7 +16,9 @@ public class ControlPoint : MonoBehaviour
     Vector3 dragStartPos, dragReleasePos;  // start and end points of where the cursor is to calculate shootPower (v3s to make world camera space work)
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
     internal float shootPower;             // force ball gets shot at (in update/UI, don't touch this)
-    public int shootMult = 4;          // multiplier for shot (mess with this)
+    public int shootMult = 4;              // multiplier for shot (mess with this)
+    float ctrlptX, ctrlptY;
+    Quaternion q;
 
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
@@ -44,10 +46,13 @@ public class ControlPoint : MonoBehaviour
         transform.position = ball.position;
         CameraMovement();
         // look in here again for right click thing
+        //Vector3 eulerRotation = transform.rotation.eulerAngles;
+        //transform.rotation = Quaternion.Euler(0, eulerRotation.y, eulerRotation.z);
+        // These last two lines kinda veer the shooting the way we want it but break the camera currently so I'm commenting it out
 
         #region Controls
         if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();
-        if (Input.GetMouseButtonDown(1) && isShooting) CancelShot();
+        // if (Input.GetMouseButtonDown(1) && isShooting) CancelShot();
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
         #endregion
