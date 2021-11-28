@@ -174,7 +174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b35002feae3a99a42b9a104862d7778d, type: 2}
+  - {fileID: 2100000, guid: bd43168e887d3de4b88b564312d993c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -311,7 +311,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b35002feae3a99a42b9a104862d7778d, type: 2}
+  - {fileID: 2100000, guid: bd43168e887d3de4b88b564312d993c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1649,7 +1649,7 @@ PrefabInstance:
     - target: {fileID: 2421634598593336708, guid: 4026591151a4e094d9e200cc3d6f3755, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b35002feae3a99a42b9a104862d7778d, type: 2}
+      objectReference: {fileID: 2100000, guid: 6b108661a14b6bc418770b6e385e824b, type: 2}
     - target: {fileID: 3644088202182778067, guid: 4026591151a4e094d9e200cc3d6f3755, type: 3}
       propertyPath: m_Name
       value: Pipe 3x1 Scaled
@@ -2596,7 +2596,7 @@ PrefabInstance:
     - target: {fileID: 348979601371282840, guid: 797888267fa818b4083a41f323c6daa2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b35002feae3a99a42b9a104862d7778d, type: 2}
+      objectReference: {fileID: 2100000, guid: 6b108661a14b6bc418770b6e385e824b, type: 2}
     - target: {fileID: 410230026184835908, guid: 797888267fa818b4083a41f323c6daa2, type: 3}
       propertyPath: m_Name
       value: 2x1 Scaled
@@ -2705,6 +2705,6 @@ PrefabInstance:
     - target: {fileID: 6123019504925534356, guid: c3c597a27acf8a2429378a7dc9492ac7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b35002feae3a99a42b9a104862d7778d, type: 2}
+      objectReference: {fileID: 2100000, guid: 6b108661a14b6bc418770b6e385e824b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3c597a27acf8a2429378a7dc9492ac7, type: 3}
