@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8108836662142162434}
   - component: {fileID: 5127212309079054759}
   - component: {fileID: 6972543263613529453}
-  - component: {fileID: 1793860458943097405}
+  - component: {fileID: 1896750226971614598}
   m_Layer: 0
   m_Name: Pipe 2x1 Broken
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1793860458943097405
-MeshCollider:
+--- !u!65 &1896750226971614598
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3191843991455854740, guid: 86de7cff56f4a434f83b2cda224aa1c9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 231.69069, y: 456.8758, z: 231.69075}
+  m_Center: {x: 0.00009155276, y: -114.13254, z: 0.000018838731}
