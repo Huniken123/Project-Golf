@@ -55,6 +55,7 @@ public class ControlPoint : MonoBehaviour
         // if (Input.GetMouseButtonDown(1) && isShooting) CancelShot();
         //  Tobey - This is a workaround for releasing the button in Update and Fixed Update
         if (Input.GetMouseButtonUp(0) && isShooting) isShot = true;
+        if (Input.GetKeyDown(KeyCode.R)) Respawn();
         #endregion
     }
 
