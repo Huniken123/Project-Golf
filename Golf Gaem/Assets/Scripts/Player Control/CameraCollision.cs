@@ -3,12 +3,11 @@ using UnityEngine;
 public class CameraCollision : MonoBehaviour
 {
     // adapted from this tutorial: https://sharpcoderblog.com/blog/third-person-camera-in-unity-3d
-    // make script so that it doesn't fully collide with wall so that it works good with Aaron's shader
-
+    
     public Transform ctrlTransform; //transform of control point
     public float castRadius = 0.3f; //To prevent Camera from clipping through Objects
     public float cameraSpeed = 15f; //How fast the Camera should snap into position if there are no obstacles
-    public Transform minCamPos;
+    public Transform minPos;
 
     Vector3 defaultPos;
     Vector3 directionNormalized;
@@ -31,17 +30,16 @@ public class CameraCollision : MonoBehaviour
         Vector3 dirTmp = parentTransform.TransformPoint(defaultPos) - ctrlTransform.position;
         if (Physics.SphereCast(ctrlTransform.position, castRadius, dirTmp, out hit, defaultDistance, ~lm, QueryTriggerInteraction.Ignore))
         {
-            float minZ = minCamPos.position.z;
+            float minDist = Vector3.Distance(defaultPos, minPos.localPosition);
             currentPos = (directionNormalized * (hit.distance - castRadius));
 
-            if (Mathf.Abs(minZ) > Mathf.Abs(currentPos.z))
-                transform.position = minCamPos.position;
-            else
-                transform.localPosition = currentPos;
+            if (currentPos.magnitude < 2.3f)
+            {
+                currentPos = minPos.localPosition;
+            }
+
         }
-        else
-        {
+        
             transform.localPosition = Vector3.Lerp(transform.localPosition, currentPos, Time.deltaTime * cameraSpeed);
-        }
     }
 }

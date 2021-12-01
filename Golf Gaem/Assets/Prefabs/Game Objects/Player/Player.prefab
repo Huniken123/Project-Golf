@@ -459,7 +459,7 @@ MonoBehaviour:
   ctrlTransform: {fileID: 5153215228392822813}
   castRadius: 0.3
   cameraSpeed: 15
-  minCamPos: {fileID: 1871846065826477139}
+  minPos: {fileID: 1871846065826477139}
 --- !u!114 &4352963646788749314
 MonoBehaviour:
   m_ObjectHideFlags: 0
