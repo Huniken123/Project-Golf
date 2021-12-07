@@ -10,7 +10,7 @@ public class Collect : MonoBehaviour
     public List<GameObject> collectList = new List<GameObject>();
     public int totalCollect;
 
-    public AudioSource collectSound;
+    public AudioClip collectSound;
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class Collect : MonoBehaviour
     {
         Debug.Log("+1");
         theScore += 1;
-        collectSound.Play();
+        AudioSource.PlayClipAtPoint(collectSound, transform.position);
         //yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
