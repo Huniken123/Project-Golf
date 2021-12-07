@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("NLobby");
     }
     
     public void HTPBack()
