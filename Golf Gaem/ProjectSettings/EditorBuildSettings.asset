@@ -5,20 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Levels/TitleMenu.unity
     guid: 834d0dcf209df4e469727bb92550ce6f
   - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/Scenes/Deprecated/Lobby.unity
-    guid: e7fa03bc2061a51438bb37188b2cd2b0
-=======
     path: Assets/Scenes/Levels/NLobby.unity
     guid: 81571122d5b9f4eb7a0209f8700b030e
->>>>>>> Stashed changes
   - enabled: 1
     path: Assets/Scenes/Levels/Maintenance 1.unity
     guid: 47a3e992c8ef903438b56c2f5473913a
@@ -28,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GoalScene.unity
     guid: 0d3e5399622572144a5004a6cf300b3c
-  - enabled: 0
-    path: Assets/Scenes/Deprecated/Lobby.unity
-    guid: e7fa03bc2061a51438bb37188b2cd2b0
   m_configObjects: {}
