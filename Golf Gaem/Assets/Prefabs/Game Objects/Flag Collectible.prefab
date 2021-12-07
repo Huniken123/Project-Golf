@@ -111,4 +111,4 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   collectList: []
   totalCollect: 0
-  collectSound: {fileID: 8300000, guid: e4b44ba968897154d9dd1a7e661991aa, type: 3}
+  collectSound: {fileID: 8300000, guid: 876a3e54582ce074ba43305f96b01100, type: 3}

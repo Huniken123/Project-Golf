@@ -32,6 +32,11 @@ public class Collect : MonoBehaviour
     void Update()
     {
         scoreText.GetComponent<Text>().text = "Score: " + theScore + "/" + totalCollect;
+
+        if (theScore == totalCollect)
+        {
+            Debug.Log("All collected");
+        }
     }
 
 
