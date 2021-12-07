@@ -2376,7 +2376,7 @@ MonoBehaviour:
   scoreText: {fileID: 1996276410}
   collectList: []
   totalCollect: 0
-  collectSound: {fileID: 67172329}
+  collectSound: {fileID: 8300000, guid: 876a3e54582ce074ba43305f96b01100, type: 3}
 --- !u!1 &1334052040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,7 +3471,7 @@ MonoBehaviour:
   scoreText: {fileID: 1996276410}
   collectList: []
   totalCollect: 0
-  collectSound: {fileID: 67172329}
+  collectSound: {fileID: 8300000, guid: 876a3e54582ce074ba43305f96b01100, type: 3}
 --- !u!1 &1985342614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,7 +3995,7 @@ PrefabInstance:
     - target: {fileID: 5159493818320459336, guid: 5d22c743357ba7b408a18180ffe88a79, type: 3}
       propertyPath: collectSound
       value: 
-      objectReference: {fileID: 67172329}
+      objectReference: {fileID: 8300000, guid: 876a3e54582ce074ba43305f96b01100, type: 3}
     - target: {fileID: 8355896632095653781, guid: 5d22c743357ba7b408a18180ffe88a79, type: 3}
       propertyPath: m_RootOrder
       value: 1
