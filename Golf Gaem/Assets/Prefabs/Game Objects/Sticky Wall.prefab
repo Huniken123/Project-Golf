@@ -325,8 +325,8 @@ GameObject:
   - component: {fileID: 7994424552065789827}
   - component: {fileID: 7994424552065789826}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Floor
+  m_Name: Stick Hitbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
