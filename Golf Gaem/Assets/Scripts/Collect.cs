@@ -12,10 +12,18 @@ public class Collect : MonoBehaviour
 
     public AudioClip collectSound;
 
+
+
+    void Awake()
+    {
+        theScore = 0;
+        totalCollect = 0;
+    }
+
     void Start()
     {
         //scoreText = GameObject.FindGameObjectWithTag("Score Text");
-        
+
         foreach (GameObject collectableObjs in GameObject.FindGameObjectsWithTag("Collectable"))
         {
             collectList.Add(collectableObjs);
