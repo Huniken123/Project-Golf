@@ -10,6 +10,11 @@ public class GoalButtons : MonoBehaviour
     public bool isMainMenu;
     public bool isQuit;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.None;    
+    }
+
     public void OnMouseUp()
     {
         if (isRestart)
