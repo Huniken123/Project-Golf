@@ -6,7 +6,7 @@ using UnityEngine;
 public class GoalCode : MonoBehaviour
 {
     public bool finalGoal;
-    public int nextSceneIndex;
+    public string nextSceneName;
 
     // Update is called once per frame
     void OnTriggerEnter()
@@ -20,7 +20,7 @@ public class GoalCode : MonoBehaviour
 
         else
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            SceneManager.LoadScene(nextSceneName);
         }
 
         IEnumerator EndApp()
