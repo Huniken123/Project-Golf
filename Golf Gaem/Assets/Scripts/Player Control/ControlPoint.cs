@@ -44,7 +44,7 @@ public class ControlPoint : MonoBehaviour
     private void Update()
     {
         transform.position = ball.position;
-        CameraMovement();
+        if (PauseMenu.GameIsPaused == false) CameraMovement();
         // look in here again for right click thing
         //Vector3 eulerRotation = transform.rotation.eulerAngles;
         //transform.rotation = Quaternion.Euler(0, eulerRotation.y, eulerRotation.z);
