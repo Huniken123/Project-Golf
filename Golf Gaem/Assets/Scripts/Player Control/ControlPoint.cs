@@ -23,7 +23,7 @@ public class ControlPoint : MonoBehaviour
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
     [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
-    int shotCount = 0;                     // keeps track of how many times the ball was shot. Does nothing currently
+    public static int shotCount = 0;              // keeps track of how many times the ball was shot. Does nothing currently
 
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
@@ -72,7 +72,7 @@ public class ControlPoint : MonoBehaviour
         if (ball.velocity.sqrMagnitude <= 0.05f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
-        else ballRend.material.color = Color.black; // visual way of showing if the player can hit the ball or not
+        else ballRend.material.color = Color.red; // visual way of showing if the player can hit the ball or not
 
         if (ball.position.y <= killboxY) Respawn();
     }
