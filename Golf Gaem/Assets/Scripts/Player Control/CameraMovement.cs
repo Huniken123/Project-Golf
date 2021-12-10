@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Not used currently?? Not sure why this was made, I didn't make it - Jaden
+
 public class CameraMovement : MonoBehaviour
 {
     float xRot, yRot = 0f;
