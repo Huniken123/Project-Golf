@@ -11,22 +11,39 @@ public class GoalCode : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter()
     {
-        if (finalGoal)
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 1:
+                ParManager.lobbyScore = ControlPoint.shotCount;
+                ControlPoint.shotCount = 0;
+                Debug.Log("Lobby Score: " + ParManager.lobbyScore);
+                break;
+            case 2:
+                ParManager.m1Score = ControlPoint.shotCount;
+                ControlPoint.shotCount = 0;
+                Debug.Log("M1 Score: " + ParManager.m1Score);
+                break;
+            case 3:
+                ParManager.m2Score = ControlPoint.shotCount;
+                ControlPoint.shotCount = 0;
+                Debug.Log("M2 Score: " + ParManager.m2Score);
+                break;
+            default:
+                Debug.LogWarning("Something is wrong with the par counter. Are the scene's buildIndex values correct?");
+                break;
+        }
+        SceneManager.LoadScene(nextSceneName);
+        
+        /*if (finalGoal)
         {
             gameObject.GetComponent<AudioSource>().Play();
             Debug.Log("A Winner Is You");
             StartCoroutine(EndApp());
         }
-
-        else
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
-
         IEnumerator EndApp()
         {
             yield return new WaitForSeconds(1.0f);
             Application.Quit();
-        }
+        }*/
     }
 }

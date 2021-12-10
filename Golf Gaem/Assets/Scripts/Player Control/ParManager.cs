@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ParManager : MonoBehaviour
 {
     Text text;
+    public static int lobbyScore, m1Score, m2Score;
 
     // Start is called before the first frame update
     void Start()

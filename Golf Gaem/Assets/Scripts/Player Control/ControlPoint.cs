@@ -23,7 +23,7 @@ public class ControlPoint : MonoBehaviour
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
     [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
-    public static int shotCount = 0;              // keeps track of how many times the ball was shot. Does nothing currently
+    public static int shotCount = 0;       // keeps track of how many times the ball was shot
 
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
