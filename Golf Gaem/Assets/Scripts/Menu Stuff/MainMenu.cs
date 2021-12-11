@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject MMenu;
     public GameObject OMenu;
     public GameObject HTP;
+    public GameObject Credits;
 
     public void PrePlay()
     {
@@ -24,6 +25,18 @@ public class MainMenu : MonoBehaviour
     {
         MMenu.SetActive(true);
         HTP.SetActive(false);
+    }
+
+    public void CreditsMenu()
+    {
+        MMenu.SetActive(false);
+        Credits.SetActive(true);
+    }
+
+    public void CreditsBack()
+    {
+        MMenu.SetActive(true);
+        Credits.SetActive(false);
     }
 
     public void QuitGame()
