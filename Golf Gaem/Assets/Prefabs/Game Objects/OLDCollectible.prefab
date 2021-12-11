@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8689704401977617975}
   - component: {fileID: 5159493818320459336}
   m_Layer: 0
-  m_Name: Flag Collectible
+  m_Name: OLDCollectible
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
