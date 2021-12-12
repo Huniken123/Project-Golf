@@ -28,6 +28,7 @@ public class ControlPoint : MonoBehaviour
     [Header("Ball trajectory UI:")]
     internal LineRenderer line;
     public float lineLength;
+    TrailRenderer ballTrail;
 
     #endregion
 
@@ -38,6 +39,7 @@ public class ControlPoint : MonoBehaviour
         isShooting = false; isShot = false;
         line = GetComponent<LineRenderer>();
         ballRend = ball.GetComponent<Renderer>();
+        ballTrail = ball.GetComponent<TrailRenderer>();
         line.enabled = false;
     }
 
@@ -104,8 +106,9 @@ public class ControlPoint : MonoBehaviour
         {
             isShooting = false;
             ball.velocity = new Vector3(0,0,0); // Tobey - Fixes a glitch and also stops any ball momentum with a single click while trying to shoot in the air, assuming that's on
-            isShot = false;
+            ballTrail.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
+            isShot = false;
         }
 
         if (isShooting == false)
@@ -142,6 +145,7 @@ public class ControlPoint : MonoBehaviour
 
     public void Respawn()
     {
+        ballTrail.enabled = false;
         ball.position = ballLastShot;
         Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
         ball.velocity = Vector3.zero;
