@@ -6,7 +6,7 @@ public class RampCollision : MonoBehaviour
 {
     GameObject player;
     Rigidbody ballRB;
-    bool onRamp = false;
+    public static bool onRamp = false;
     
     private void Awake()
     {

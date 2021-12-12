@@ -29,6 +29,7 @@ public class ControlPoint : MonoBehaviour
     internal LineRenderer line;
     public float lineLength;
     TrailRenderer ballTrail;
+    ParticleSystem ps;
 
     #endregion
 
@@ -40,6 +41,7 @@ public class ControlPoint : MonoBehaviour
         line = GetComponent<LineRenderer>();
         ballRend = ball.GetComponent<Renderer>();
         ballTrail = ball.GetComponent<TrailRenderer>();
+        ps = ball.GetComponent<ParticleSystem>();
         line.enabled = false;
     }
 
@@ -71,7 +73,7 @@ public class ControlPoint : MonoBehaviour
             lineLength = shootPower * 2;
         }
 
-        if (ball.velocity.sqrMagnitude <= 0.05f) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
+        if (ball.velocity.sqrMagnitude <= 0.05f && !RampCollision.onRamp) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
         else ballRend.material.color = Color.red; // visual way of showing if the player can hit the ball or not
@@ -105,7 +107,6 @@ public class ControlPoint : MonoBehaviour
         if (isShot)
         {
             isShooting = false;
-            ball.velocity = new Vector3(0,0,0); // Tobey - Fixes a glitch and also stops any ball momentum with a single click while trying to shoot in the air, assuming that's on
             ballTrail.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             isShot = false;
@@ -114,12 +115,12 @@ public class ControlPoint : MonoBehaviour
         if (isShooting == false)
         {
             ball.isKinematic = false; // i think this is here for sticky wall purposes
-            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); }
-            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); }
-            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); }
-            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); }
-            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); }
-            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); }
+            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); ps.Play(); }
+            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); ps.Play(); }
+            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); ps.Play(); }
+            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); ps.Play(); }
+            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); ps.Play(); }
+            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); ps.Play(); }
             else Debug.Log("Shot wasn't strong enough");
 
             Debug.Log("Shot power: " + (shootPower * shootMult));
