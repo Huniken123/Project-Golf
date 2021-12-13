@@ -3363,9 +3363,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You are a golf ball. Left click to start shooting, drag the mouse back
-    to adjust the power of your shot, and let go to shoot it. Right click to cancel
-    your shot. Can you make it to the end?
+  m_text: 'You are a golf ball. Left click to start shooting, drag the mouse back
+    to adjust the power of your shot, and let go to shoot it. Press R to respawn
+    if anything goes wrong.
+
+
+    Can you make it to the end?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3730964d5422764ea9232c132dde294, type: 2}
   m_sharedMaterial: {fileID: -533775888326586988, guid: e3730964d5422764ea9232c132dde294, type: 2}
