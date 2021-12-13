@@ -29,6 +29,7 @@ public class ControlPoint : MonoBehaviour
     internal LineRenderer line;
     public float lineLength;
     TrailRenderer ballTrail;
+    public GameObject starVFXObj;
     ParticleSystem ps;
 
     #endregion
@@ -41,7 +42,7 @@ public class ControlPoint : MonoBehaviour
         line = GetComponent<LineRenderer>();
         ballRend = ball.GetComponent<Renderer>();
         ballTrail = ball.GetComponent<TrailRenderer>();
-        ps = ball.GetComponent<ParticleSystem>();
+        ps = starVFXObj.GetComponent<ParticleSystem>();
         line.enabled = false;
     }
 
@@ -115,12 +116,12 @@ public class ControlPoint : MonoBehaviour
         if (isShooting == false)
         {
             ball.isKinematic = false; // i think this is here for sticky wall purposes
-            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); ps.Play(); }
-            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); ps.Play(); }
-            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); ps.Play(); }
-            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); ps.Play(); }
-            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); ps.Play(); }
-            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); ps.Play(); }
+            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); StarVFX(); }
+            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); StarVFX(); }
+            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); StarVFX(); }
+            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); StarVFX(); }
+            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); StarVFX(); }
+            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); StarVFX(); }
             else Debug.Log("Shot wasn't strong enough");
 
             Debug.Log("Shot power: " + (shootPower * shootMult));
@@ -160,5 +161,11 @@ public class ControlPoint : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         dragReleasePos = new Vector3(0, 0, 0); dragStartPos = new Vector3(0, 0, 0);
         isShot = false; isShooting = false;
+    }
+
+    void StarVFX()
+    {
+        Debug.Log(ballLastShot);
+        Instantiate(starVFXObj, ballLastShot, transform.rotation, null);
     }
 }
