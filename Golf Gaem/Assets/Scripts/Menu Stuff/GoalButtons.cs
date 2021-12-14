@@ -13,6 +13,7 @@ public class GoalButtons : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         lobbyText.text = "Lobby Score: " + ParManager.lobbyScore;
         m1Text.text = "Maintenance 1 Score: " + ParManager.m1Score;
