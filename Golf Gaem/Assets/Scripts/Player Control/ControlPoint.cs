@@ -21,6 +21,10 @@ public class ControlPoint : MonoBehaviour
     public int shootMult = 4;              // multiplier for shot (mess with this)
     public GameObject lossText;            // text to display when you lose
 
+    public AudioClip[] audioClips;         //audio stuff
+    public AudioSource audioSource;
+    public AudioListener audioListener;
+
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
     [SerializeField] float killboxY = -10; // change this depending on level, also maybe get rid of eventually because this is a bad system
@@ -45,6 +49,9 @@ public class ControlPoint : MonoBehaviour
         ballTrail = ball.GetComponent<TrailRenderer>();
         ps = starVFXObj.GetComponent<ParticleSystem>();
         line.enabled = false;
+
+        audioListener = GetComponent<AudioListener>();  //audio stuff
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -123,12 +130,12 @@ public class ControlPoint : MonoBehaviour
         if (isShooting == false)
         {
             ball.isKinematic = false; // i think this is here for sticky wall purposes
-            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); StarVFX(); }
-            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); StarVFX(); }
-            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); StarVFX(); }
-            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); StarVFX(); }
-            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); StarVFX(); }
-            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); StarVFX(); }
+            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); StarVFX(); PlayRandom(); }
+            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); StarVFX(); PlayRandom(); }
+            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); StarVFX(); PlayRandom(); }
+            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); StarVFX(); PlayRandom(); }
+            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); StarVFX(); PlayRandom(); }
+            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); StarVFX(); PlayRandom(); }
             else Debug.Log("Shot wasn't strong enough");
 
             Debug.Log("Shot power: " + (shootPower * shootMult));
@@ -187,5 +194,11 @@ public class ControlPoint : MonoBehaviour
         yield return new WaitForSeconds(3f);
         shotCount = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void PlayRandom()
+    {
+        audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
+        audioSource.Play();
     }
 }
