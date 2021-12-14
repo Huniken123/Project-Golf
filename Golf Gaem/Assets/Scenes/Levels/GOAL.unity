@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18025765, g: 0.22568367, b: 0.30690655, a: 1}
+  m_IndirectSpecularColor: {r: 0.18025792, g: 0.22568399, b: 0.3069072, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 485123296}
   - component: {fileID: 485123295}
   m_Layer: 5
-  m_Name: LobbyScore (1)
+  m_Name: LobbyColScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,7 +734,6 @@ GameObject:
   - component: {fileID: 1104157481}
   - component: {fileID: 1104157480}
   - component: {fileID: 1104157479}
-  - component: {fileID: 1104157482}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -806,9 +805,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1104157482}
+      - m_Target: {fileID: 1134565466}
         m_TargetAssemblyTypeName: GoalButtons, Assembly-CSharp
-        m_MethodName: OnMouseUp
+        m_MethodName: GoalQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -856,24 +855,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104157477}
   m_CullTransparentMesh: 1
---- !u!114 &1104157482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104157477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085f81a2e2026544788cbcf975f294ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRestart: 0
-  isMainMenu: 0
-  isQuit: 1
-  lobbyText: {fileID: 0}
-  m1Text: {fileID: 0}
-  m2Text: {fileID: 0}
 --- !u!1 &1134565464
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,12 +903,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085f81a2e2026544788cbcf975f294ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRestart: 0
-  isMainMenu: 0
-  isQuit: 0
   lobbyText: {fileID: 285245298}
   m1Text: {fileID: 162106748}
   m2Text: {fileID: 1526805032}
+  lobbyColText: {fileID: 485123295}
+  m1ColText: {fileID: 1765445571}
+  m2ColText: {fileID: 1743585697}
 --- !u!1 &1293190600
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +921,6 @@ GameObject:
   - component: {fileID: 1293190604}
   - component: {fileID: 1293190603}
   - component: {fileID: 1293190602}
-  - component: {fileID: 1293190605}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -1012,9 +992,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1293190605}
+      - m_Target: {fileID: 1134565466}
         m_TargetAssemblyTypeName: GoalButtons, Assembly-CSharp
-        m_MethodName: OnMouseUp
+        m_MethodName: GoalMMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1062,24 +1042,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293190600}
   m_CullTransparentMesh: 1
---- !u!114 &1293190605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293190600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085f81a2e2026544788cbcf975f294ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRestart: 0
-  isMainMenu: 1
-  isQuit: 0
-  lobbyText: {fileID: 0}
-  m1Text: {fileID: 0}
-  m2Text: {fileID: 0}
 --- !u!1 &1309135791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1487,7 @@ GameObject:
   - component: {fileID: 1743585698}
   - component: {fileID: 1743585697}
   m_Layer: 5
-  m_Name: M2Score (1)
+  m_Name: M2ColScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1604,7 +1566,7 @@ GameObject:
   - component: {fileID: 1765445572}
   - component: {fileID: 1765445571}
   m_Layer: 5
-  m_Name: M1Score (1)
+  m_Name: M1ColScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1946,7 +1908,6 @@ GameObject:
   - component: {fileID: 2029946893}
   - component: {fileID: 2029946892}
   - component: {fileID: 2029946891}
-  - component: {fileID: 2029946894}
   m_Layer: 5
   m_Name: Restart Button
   m_TagString: Untagged
@@ -2018,9 +1979,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2029946894}
+      - m_Target: {fileID: 1134565466}
         m_TargetAssemblyTypeName: GoalButtons, Assembly-CSharp
-        m_MethodName: OnMouseUp
+        m_MethodName: GoalRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2068,24 +2029,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029946889}
   m_CullTransparentMesh: 1
---- !u!114 &2029946894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029946889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085f81a2e2026544788cbcf975f294ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRestart: 1
-  isMainMenu: 0
-  isQuit: 0
-  lobbyText: {fileID: 0}
-  m1Text: {fileID: 0}
-  m2Text: {fileID: 0}
 --- !u!1 &2033945994
 GameObject:
   m_ObjectHideFlags: 0

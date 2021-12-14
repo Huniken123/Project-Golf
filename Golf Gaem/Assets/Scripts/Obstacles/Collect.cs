@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Collect : MonoBehaviour
 {
@@ -34,6 +35,23 @@ public class Collect : MonoBehaviour
         }
         //Must put one extra collectable in scene somewhere uncollectable so that the script stays active.
         totalCollect -= 1;
+
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 1:
+                ParManager.lobbyColTotal = totalCollect;
+                break;
+            case 2:
+                ParManager.m1ColTotal = totalCollect;
+                break;
+            case 3:
+                ParManager.m2ColTotal = totalCollect;
+                break;
+            default:
+                Debug.LogWarning("Something is wrong with the collectible counter. Are the scene's buildIndex values correct?");
+                break;
+        }
+
     }
 
     void Update()

@@ -7,6 +7,8 @@ public class ParManager : MonoBehaviour
 {
     Text text;
     public static int lobbyScore, m1Score, m2Score;
+    public static int lobbyCollected, m1Collected, m2Collected;
+    public static int lobbyColTotal, m1ColTotal, m2ColTotal;
     public static int shotLimit;
 
     // Start is called before the first frame update

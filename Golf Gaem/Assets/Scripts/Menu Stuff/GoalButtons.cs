@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GoalButtons : MonoBehaviour
 {
-    public bool isRestart;
-    public bool isMainMenu;
-    public bool isQuit;
     public Text lobbyText, m1Text, m2Text;
+    public Text lobbyColText, m1ColText, m2ColText;
 
     int lobbyPar = 3;
     int m1Par = 20;
@@ -25,29 +23,33 @@ public class GoalButtons : MonoBehaviour
         if (ParManager.m1Score <= m1Par) m1Text.color = Color.yellow;
         m2Text.text = "Maintenance 2 Score: " + ParManager.m2Score;
         if (ParManager.m2Score <= m2Par) m2Text.color = Color.yellow;
+
+        lobbyColText.text = "Collectibles: " + ParManager.lobbyCollected + "/" + ParManager.lobbyColTotal;
+        if (ParManager.lobbyCollected == ParManager.lobbyColTotal) lobbyColText.color = Color.yellow;
+        m1ColText.text = "Collectibles: " + ParManager.m1Collected + "/" + ParManager.m1ColTotal;
+        if (ParManager.m1Collected == ParManager.m1ColTotal) m1ColText.color = Color.yellow;
+        m2ColText.text = "Collectibles: " + ParManager.m2Collected + "/" + ParManager.m2ColTotal;
+        if (ParManager.m2Collected == ParManager.m2ColTotal) m2ColText.color = Color.yellow;
     }
 
-    public void OnMouseUp()
+    public void GoalRestart()
     {
-        if (isRestart)
-        {
-            ParManager.lobbyScore = 0;
-            ParManager.m1Score = 0;
-            ParManager.m2Score = 0;
-            SceneManager.LoadScene(1);
-        }
+        ParManager.lobbyScore = 0;
+        ParManager.m1Score = 0;
+        ParManager.m2Score = 0;
+        SceneManager.LoadScene(1);
+    }
 
-        if (isMainMenu)
-        {
-            ParManager.lobbyScore = 0;
-            ParManager.m1Score = 0;
-            ParManager.m2Score = 0;
-            SceneManager.LoadScene(0);
-        }
+    public void GoalMMenu()
+    {
+        ParManager.lobbyScore = 0;
+        ParManager.m1Score = 0;
+        ParManager.m2Score = 0;
+        SceneManager.LoadScene(0);
+    }
 
-        if (isQuit)
-        {
-            Application.Quit();
-        }
+    public void GoalQuit()
+    {
+        Application.Quit();
     }
 }
