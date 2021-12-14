@@ -56,7 +56,7 @@ public class Collect : MonoBehaviour
 
     void Update()
     {
-        scoreText.GetComponent<Text>().text = "Score: " + theScore + "/" + totalCollect;
+        scoreText.GetComponent<Text>().text = "Flags: " + theScore + "/" + totalCollect;
 
         if (theScore == totalCollect)
         {
