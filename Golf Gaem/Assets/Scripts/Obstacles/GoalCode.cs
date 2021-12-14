@@ -17,16 +17,19 @@ public class GoalCode : MonoBehaviour
                 ParManager.lobbyScore = ControlPoint.shotCount;
                 ControlPoint.shotCount = 0;
                 Debug.Log("Lobby Score: " + ParManager.lobbyScore);
+                ParManager.shotLimit = 50;
                 break;
             case 2:
                 ParManager.m1Score = ControlPoint.shotCount;
                 ControlPoint.shotCount = 0;
                 Debug.Log("M1 Score: " + ParManager.m1Score);
+                ParManager.shotLimit = 35;
                 break;
             case 3:
                 ParManager.m2Score = ControlPoint.shotCount;
                 ControlPoint.shotCount = 0;
                 Debug.Log("M2 Score: " + ParManager.m2Score);
+                ParManager.shotLimit = 20;
                 break;
             default:
                 Debug.LogWarning("Something is wrong with the par counter. Are the scene's buildIndex values correct?");

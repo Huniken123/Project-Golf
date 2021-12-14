@@ -9,6 +9,25 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
 
+    private void Awake()
+    {
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 1:
+                ParManager.shotLimit = 50;
+                break;
+            case 2:
+                ParManager.shotLimit = 35;
+                break;
+            case 3:
+                ParManager.shotLimit = 20;
+                break;
+            default:
+                Debug.LogWarning("Something is wrong with the par counter. Are the scene's buildIndex values correct?");
+                break;
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

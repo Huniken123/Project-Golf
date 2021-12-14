@@ -11,7 +11,7 @@ public class GoalButtons : MonoBehaviour
     public bool isQuit;
     public Text lobbyText, m1Text, m2Text;
 
-    private void Awake()
+    private void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;

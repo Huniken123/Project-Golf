@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ControlPoint : MonoBehaviour
 {
@@ -17,8 +19,7 @@ public class ControlPoint : MonoBehaviour
     bool isShooting, isShot;               // Tobey -  Checks if the player is shooting or has been shot
     internal float shootPower;             // force ball gets shot at (in update/UI, don't touch this)
     public int shootMult = 4;              // multiplier for shot (mess with this)
-    float ctrlptX, ctrlptY;
-    Quaternion q;
+    public GameObject lossText;            // text to display when you lose
 
     [Header("Respawning:")]
     Vector3 ballLastShot;                  // stores respawn point
@@ -75,7 +76,12 @@ public class ControlPoint : MonoBehaviour
             lineLength = shootPower * 2;
         }
 
-        if (ball.velocity.sqrMagnitude <= 0.05f && !RampCollision.onRamp) { ball.velocity = Vector3.zero; ball.angularVelocity = Vector3.zero; }
+        if (ball.velocity.sqrMagnitude <= 0.05f && !RampCollision.onRamp)
+        { 
+            ball.velocity = Vector3.zero;
+            ball.angularVelocity = Vector3.zero;
+            if (shotCount >= ParManager.shotLimit) StartCoroutine(LossState());
+        }
 
         if (ball.velocity == new Vector3(0, 0, 0)) ballRend.material.color = Color.white;
         else ballRend.material.color = Color.red; // visual way of showing if the player can hit the ball or not
@@ -148,11 +154,16 @@ public class ControlPoint : MonoBehaviour
 
     public void Respawn()
     {
-        ballTrail.enabled = false;
-        ball.position = ballLastShot;
-        Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
-        ball.velocity = Vector3.zero;
-        shootPower = 0;
+        if (shotCount >= ParManager.shotLimit) StartCoroutine(LossState());
+        else
+        {
+            ballTrail.enabled = false;
+            ball.position = ballLastShot;
+            Debug.LogWarning("Ball out of bounds, respawning at " + ballLastShot);
+            ball.velocity = Vector3.zero;
+            shootPower = 0;
+        }
+        
     }
 
     void CancelShot()
@@ -168,5 +179,13 @@ public class ControlPoint : MonoBehaviour
     {
         Debug.Log(ballLastShot);
         Instantiate(starVFXObj, ballLastShot, transform.rotation, null);
+    }
+
+    IEnumerator LossState()
+    {
+        lossText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        shotCount = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

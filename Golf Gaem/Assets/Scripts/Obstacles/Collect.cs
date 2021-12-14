@@ -16,6 +16,7 @@ public class Collect : MonoBehaviour
     {
         theScore = 0;
         totalCollect = 0;
+        scoreText = GameObject.FindWithTag("Score Text");
     }
 
     void Start()

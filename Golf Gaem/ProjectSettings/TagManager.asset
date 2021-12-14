@@ -14,6 +14,7 @@ TagManager:
   - MovingPlatform
   - Collectable
   - Score Text
+  - LossText
   layers:
   - Default
   - TransparentFX
