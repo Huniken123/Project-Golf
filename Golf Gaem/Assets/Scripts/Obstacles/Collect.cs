@@ -12,8 +12,6 @@ public class Collect : MonoBehaviour
 
     public AudioClip collectSound;
 
-
-
     void Awake()
     {
         theScore = 0;
@@ -52,6 +50,7 @@ public class Collect : MonoBehaviour
     {
         Debug.Log("+1");
         theScore += 1;
+        ControlPoint.shotCount -= 2;
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
         //yield return new WaitForSeconds(1);
         Destroy(gameObject);

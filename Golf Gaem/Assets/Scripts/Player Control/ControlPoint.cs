@@ -54,6 +54,7 @@ public class ControlPoint : MonoBehaviour
         //Vector3 eulerRotation = transform.rotation.eulerAngles;
         //transform.rotation = Quaternion.Euler(0, eulerRotation.y, eulerRotation.z);
         // These last two lines kinda veer the shooting the way we want it but break the camera currently so I'm commenting it out
+        if (shotCount < 0) { shotCount = 0; }
 
         #region Controls
         if (Input.GetMouseButtonDown(0) && !isShooting && ball.velocity == Vector3.zero) DragStart();

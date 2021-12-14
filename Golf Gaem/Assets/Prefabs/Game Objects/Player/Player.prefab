@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580635e2001bb6d47bd6ae9dc4bec68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutoutSize: 0.1
+  cutoutSize: 0.275
   falloffSize: 0.05
   targetObject: {fileID: 5153215230441525596}
   minView: {fileID: 1871846065826477139}
