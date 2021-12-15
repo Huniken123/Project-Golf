@@ -5123,6 +5123,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0443b0981415b7549b2207ebc6a2fd3a, type: 3}
+--- !u!114 &196388775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6917339741543214184, guid: 0443b0981415b7549b2207ebc6a2fd3a, type: 3}
+  m_PrefabInstance: {fileID: 196388774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &196388776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8382270811024202406, guid: 0443b0981415b7549b2207ebc6a2fd3a, type: 3}
+  m_PrefabInstance: {fileID: 196388774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &199618927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9019472471771349368, guid: 4026591151a4e094d9e200cc3d6f3755, type: 3}
@@ -12509,7 +12525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ef308d52e40dc438de75f0237e2e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalGoal: 0
+  loadScreen: {fileID: 196388776}
+  slider: {fileID: 196388775}
   nextSceneName: M2
 --- !u!65 &442682620
 BoxCollider:

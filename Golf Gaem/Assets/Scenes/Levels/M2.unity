@@ -15528,6 +15528,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3428348056592272491, guid: 0443b0981415b7549b2207ebc6a2fd3a, type: 3}
   m_PrefabInstance: {fileID: 534859133}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &534859136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6917339741543214184, guid: 0443b0981415b7549b2207ebc6a2fd3a, type: 3}
+  m_PrefabInstance: {fileID: 534859133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &534859137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8382270811024202406, guid: 0443b0981415b7549b2207ebc6a2fd3a, type: 3}
+  m_PrefabInstance: {fileID: 534859133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &541628187
 Mesh:
   m_ObjectHideFlags: 0
@@ -22177,7 +22193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ef308d52e40dc438de75f0237e2e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalGoal: 0
+  loadScreen: {fileID: 534859137}
+  slider: {fileID: 534859136}
   nextSceneName: GOAL
 --- !u!65 &871138980
 BoxCollider:
