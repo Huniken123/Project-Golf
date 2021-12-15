@@ -11,7 +11,7 @@ public class GoalButtons : MonoBehaviour
     public Text gradeText;
 
     int goodBoyPoints = 0;
-    int lobbyPar = 3;
+    int lobbyPar = 5;
     int m1Par = 18;
     int m2Par = 8;
 
