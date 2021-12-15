@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GoalCode : MonoBehaviour
 {
-    public bool finalGoal;
+    public GameObject loadScreen;
+    public Slider slider;
     public string nextSceneName;
 
+    
     // Update is called once per frame
     void OnTriggerEnter()
     {
@@ -38,18 +41,19 @@ public class GoalCode : MonoBehaviour
                 Debug.LogWarning("Something is wrong with the par counter. Are the scene's buildIndex values correct?");
                 break;
         }
-        SceneManager.LoadScene(nextSceneName);
+        StartCoroutine(AsyncLoad(nextSceneName));
         
-        /*if (finalGoal)
+        IEnumerator AsyncLoad (string sceneName)
         {
-            gameObject.GetComponent<AudioSource>().Play();
-            Debug.Log("A Winner Is You");
-            StartCoroutine(EndApp());
+            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+            loadScreen.SetActive(true);
+            
+            while(!operation.isDone)
+            {
+                float progress = Mathf.Clamp01(operation.progress / 0.9f);
+                slider.value = progress;
+                yield return null;
+            }
         }
-        IEnumerator EndApp()
-        {
-            yield return new WaitForSeconds(1.0f);
-            Application.Quit();
-        }*/
     }
 }
