@@ -12,7 +12,7 @@ public class GoalButtons : MonoBehaviour
 
     int goodBoyPoints = 0;
     int lobbyPar = 3;
-    int m1Par = 20;
+    int m1Par = 18;
     int m2Par = 8;
 
     private void Start()
