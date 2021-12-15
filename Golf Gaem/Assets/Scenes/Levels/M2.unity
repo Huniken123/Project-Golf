@@ -12080,6 +12080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+--- !u!1 &417884296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5153215228392822803, guid: 664b3f1c063d2c143a57c38701094ea6, type: 3}
+  m_PrefabInstance: {fileID: 417884295}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &419150905
 GameObject:
   m_ObjectHideFlags: 0
@@ -22196,6 +22201,7 @@ MonoBehaviour:
   loadScreen: {fileID: 534859137}
   slider: {fileID: 534859136}
   nextSceneName: GOAL
+  player: {fileID: 417884296}
 --- !u!65 &871138980
 BoxCollider:
   m_ObjectHideFlags: 0

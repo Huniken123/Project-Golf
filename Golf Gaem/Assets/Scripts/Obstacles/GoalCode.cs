@@ -9,8 +9,13 @@ public class GoalCode : MonoBehaviour
     public GameObject loadScreen;
     public Slider slider;
     public string nextSceneName;
+    public GameObject player;
 
-    
+    private void Start()
+    {
+        player = GameObject.Find("ControlPoint");
+    }
+
     // Update is called once per frame
     void OnTriggerEnter()
     {
@@ -41,6 +46,7 @@ public class GoalCode : MonoBehaviour
                 Debug.LogWarning("Something is wrong with the par counter. Are the scene's buildIndex values correct?");
                 break;
         }
+        player.GetComponent<ControlPoint>().ball.velocity = Vector3.zero;
         StartCoroutine(AsyncLoad(nextSceneName));
         
         IEnumerator AsyncLoad (string sceneName)
