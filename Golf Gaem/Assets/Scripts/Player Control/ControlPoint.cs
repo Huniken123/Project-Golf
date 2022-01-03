@@ -130,17 +130,15 @@ public class ControlPoint : MonoBehaviour
         if (isShooting == false)
         {
             ball.isKinematic = false; // i think this is here for sticky wall purposes
-            if (shootPower < 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.8f)); StarVFX(); PlayRandom(); }
-            else if (shootPower < 2f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.6f)); StarVFX(); PlayRandom(); }
-            else if (shootPower < 1.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.4f)); StarVFX(); PlayRandom(); }
-            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.2f)); StarVFX(); PlayRandom(); }
-            else if (shootPower < 0.01f) { ball.AddForce(transform.forward * (shootPower * shootMult)); StarVFX(); PlayRandom(); }
-            else if (shootPower >= 2.5f) { ball.AddForce(transform.forward * (shootPower * shootMult * 2f)); StarVFX(); PlayRandom(); }
-            else Debug.Log("Shot wasn't strong enough");
+            if (shootPower < 0.03f) { Debug.Log("Shot wasn't strong enough"); }
+            else if (shootPower < 1f) { ball.AddForce(transform.forward * (shootPower * shootMult)); StarVFX(); PlayRandom(); }
+            else if (shootPower < 2.0f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.25f)); StarVFX(); PlayRandom(); }
+            else if (shootPower < 3.0f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.5f)); StarVFX(); PlayRandom(); }
+            else if (shootPower <= 4.0f) { ball.AddForce(transform.forward * (shootPower * shootMult * 1.75f)); StarVFX(); PlayRandom(); }
 
             Debug.Log("Shot power: " + (shootPower * shootMult));
 
-            shotCount++;
+            if (shootPower > 0.03f) shotCount++;
 
             CancelShot();
         }
