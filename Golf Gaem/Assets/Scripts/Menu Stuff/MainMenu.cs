@@ -13,6 +13,11 @@ public class MainMenu : MonoBehaviour
     public GameObject loadScreen;
     public Slider slider;
 
+    public static bool invertMouseX = false;
+    public static bool invertMouseY = false;
+    public static bool flipMouseDrag = false;
+    public static float mouseSensitivity;
+
     public void PrePlay()
     {
         MMenu.SetActive(false);
@@ -57,6 +62,11 @@ public class MainMenu : MonoBehaviour
     {
         MMenu.SetActive(true);
         OMenu.SetActive(false);
+    }
+
+    public void InvertMouseX()
+    {
+        invertMouseX = !invertMouseX;
     }
 
     IEnumerator AsyncLoad(string sceneName)
