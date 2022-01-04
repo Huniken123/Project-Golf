@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MMenu : MonoBehaviour
 {
-    public GameObject MMenu;
+    public GameObject mainMenu;
     public GameObject OMenu;
     public GameObject HTP;
     public GameObject Credits;
@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void PrePlay()
     {
-        MMenu.SetActive(false);
+        mainMenu.SetActive(false);
         HTP.SetActive(true);
     }
 
@@ -31,19 +31,19 @@ public class MainMenu : MonoBehaviour
 
     public void HTPBack()
     {
-        MMenu.SetActive(true);
+        mainMenu.SetActive(true);
         HTP.SetActive(false);
     }
 
     public void CreditsMenu()
     {
-        MMenu.SetActive(false);
+        mainMenu.SetActive(false);
         Credits.SetActive(true);
     }
 
     public void CreditsBack()
     {
-        MMenu.SetActive(true);
+        mainMenu.SetActive(true);
         Credits.SetActive(false);
     }
 
@@ -54,19 +54,26 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        MMenu.SetActive(false);
+        mainMenu.SetActive(false);
         OMenu.SetActive(true);
     }
     
     public void OptionsBack()
     {
-        MMenu.SetActive(true);
+        mainMenu.SetActive(true);
         OMenu.SetActive(false);
     }
 
     public void InvertMouseX()
     {
         invertMouseX = !invertMouseX;
+        Debug.Log(invertMouseX);
+    }
+
+    public void InvertMouseY()
+    {
+        invertMouseY = !invertMouseY;
+        Debug.Log(invertMouseY);
     }
 
     IEnumerator AsyncLoad(string sceneName)
