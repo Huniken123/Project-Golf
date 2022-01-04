@@ -98,10 +98,10 @@ public class ControlPoint : MonoBehaviour
 
     void CameraMovement()
     {
-        if (!MMenu.invertMouseX) xRot += Input.GetAxis("Mouse X") * camLookSpeed;
+        if (!Settings.invertMouseX) xRot += Input.GetAxis("Mouse X") * camLookSpeed;
         else xRot -= Input.GetAxis("Mouse X") * camLookSpeed;
-        if (!isShooting && !MMenu.invertMouseY) yRot += Input.GetAxis("Mouse Y") * camLookSpeed;
-        else if (!isShooting && MMenu.invertMouseY) yRot -= Input.GetAxis("Mouse Y") * camLookSpeed;
+        if (!isShooting && !Settings.invertMouseY) yRot -= Input.GetAxis("Mouse Y") * camLookSpeed;
+        else if (!isShooting && Settings.invertMouseY) yRot += Input.GetAxis("Mouse Y") * camLookSpeed;
         // lock camera y axis while shooting
         if (yRot < -25f) yRot = -25f;
         if (yRot > 30f) yRot = 30f;

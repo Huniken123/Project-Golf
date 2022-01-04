@@ -82,6 +82,18 @@ public class PauseMenu : MonoBehaviour
         optionsUI.SetActive(false);
     }
 
+    public void InvertMouseX()
+    {
+        Settings.invertMouseX = !Settings.invertMouseX;
+        Debug.Log(Settings.invertMouseX);
+    }
+
+    public void InvertMouseY()
+    {
+        Settings.invertMouseY = !Settings.invertMouseY;
+        Debug.Log(Settings.invertMouseY);
+    }
+
     public void LoadMenu()
     {
         Time.timeScale = 1f;

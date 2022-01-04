@@ -1059,7 +1059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7631369252734919959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2140,6 +2140,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7631369254256206347}
     m_Modifications:
+    - target: {fileID: 1014776445921802052, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7631369254256206346}
+    - target: {fileID: 1014776445921802052, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InvertMouseY
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014776445921802052, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1014776445958667938, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2242,6 +2254,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014776446479881878, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014776446667451644, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7631369254256206346}
+    - target: {fileID: 1014776446667451644, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InvertMouseX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014776446667451644, guid: e8eb1087ca106b54384a5050d737aaba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
